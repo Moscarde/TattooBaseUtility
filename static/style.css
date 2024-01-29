@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+html,
+body {
+    font-family: Ubuntu, Arial;
+    width: 100%;
+    height: 100%;
+}
+
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #021124;
+    overflow-y: auto;
+    width: 300px;
+    transition: all ease-in-out 0.5s;
+    padding: 0 15px;
+    z-index: 9997;
+}
+
+#header .profile img {
+    margin: 15px auto;
+    display: block;
+    width: 120px;
+    border: 8px solid #2c2c2c;
+    border-radius: 50%;
+}
+
+#header .profile h1 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    font-family: Ubuntu, Arial;
+}
+
+#header .profile .social-links a {
+    font-size: 1rem;
+    background: #212431;
+    color: #fff;
+    padding: 0.5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+#header .profile .social-links a:hover {
+    background: #149ddd;
+}
+
+.nav-menu {
+    padding: 1.5rem;
+}
+
+.nav-menu a,
+.nav-menu a:focus {
+    display: flex;
+    align-items: center;
+    color: #a8a9b4;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.nav-menu a i,
+.nav-menu a:focus i {
+    font-size: 24px;
+    padding-right: 0.8rem;
+    color: #6f7180;
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover>a i {
+    color: #149ddd;
+}
+
+i.menu-mobile {
+    position: fixed;
+    color: #fff;
+    background-color: #252c90;
+    right: 1rem;
+    top: 1rem;
+    border-radius: 4rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-nav-active #header {
+    left: 0;
+}
+
+
+#main {
+    margin-left: 300px;
+}
+
+#main section {
+    min-height: 100vh;
+}
+
+#customers {
+    background-color: #fafafa;
+}
+
+.icon-return {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    font-size: 32px;
+    color: #3c3c3c;
+    cursor: pointer
+}
+
+.customers-menu ul {
+    display: flex;
+    justify-content: center;
+}
+
+.customers-menu ul li {
+    list-style: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin: 0 1rem;
+    width: 33%;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+    /* border: #021124 1px solid; */
+    box-shadow: var(--bs-box-shadow) !important;
+    border-radius: 15px;
+}
+
+.customers-menu ul li:hover {
+    background-color: #252c90;
+    color: #fff;
+}
+
+.customers-menu ul a {
+    text-decoration: none;
+    color: #a8a9b4;
+}
+
+
+/* Form */
+#btn-send-spinner,
+#anaminese,
+#add-customer,
+#search-customer,
+#customer-profile {
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Flash Alert */
+#flash-alert {
+    position: fixed;
+    z-index: 10;
+    top: 30px;
+    right: 30px;
+}
+
+
+
+/* RESET */
+.customers-menu ul {
+    padding-left: 0;
+}
+
+
+
+/* table customers */
+#result-table-body td {
+    cursor: pointer;
+}
+
+
+/* Animations */
+.window{
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+}
+
+.icon-edit {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.icon-edit:hover {
+    color: #149ddd;
+    transition: 0.25s ease-in-out;
+}
+
+/* [data-anime] {
+    opacity: 0;
+    transition: 1s;
+}
+
+[data-anime="down"] {
+    transform: translate3d(0, -100%, 0);
+}
+
+[data-anime="up"] {
+    transform: translate3d(0, 100%, 0);
+}
+
+[data-anime="left"] {
+    transform: translate3d(-50px, 0, 0);
+}
+
+[data-anime="right"] {
+    transform: translate3d(50px, 0, 0);
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+} */
+
+
+.customer__actions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* media queries */
+
+@media (max-width: 1024px) {
+    #header {
+        left: -300px;
+    }
+
+    i.menu-mobile {
+        display: flex;
+    }
+
+    #main {
+        margin-left: 0;
+    }
+
+}

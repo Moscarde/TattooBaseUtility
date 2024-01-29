@@ -1,0 +1,47 @@
+DADOS PESSOAIS
+Nome:
+Telefone:
+Nascimento:
+CPF:
+Email:
+Endereço:
+
+ANAMINESE
+Já fez alguma cirurgia?
+Não - ...
+
+Toma algum remédio?
+
+Toma anticoncepcional?
+
+Alergia a medicamento?
+
+Sabe qual a sua pressão?
+
+´Faz tratamento médico?
+
+Está gestante?
+
+Problemas no fígado ou rim?
+
+Você é fumante?
+
+Já teve hepatite?
+
+Tem diabetes?
+
+Tem asma?
+
+Tem problema cardíaco?
+
+Já teve convulsão?
+
+Tem problema renal?
+
+Costuma sentir tontura?
+
+Compra
+Tattoo:
+Data:
+Valor:
+Forma de pagamento:

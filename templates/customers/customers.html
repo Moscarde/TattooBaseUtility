@@ -1,0 +1,16 @@
+<div class="container mb-5">
+    
+    <div class="mt-3 customers-menu">
+        <h2 class="d-flex justify-content-center mb-3">Clientes</h2>
+        <ul>
+            <li id="customers-menu__btn-add-customer">Novo cliente</li>
+            <li id="customers-menu__btn-view-customers">Lista de clientes</li>
+        </ul>
+    </div>
+
+    {% include 'customers/add-customer/add-customer.html' %}
+    {% include 'customers/view-customers/view-customers.html' %}
+    {% include 'customers/view-customers/customer-profile.html' %}
+    
+    
+</div>

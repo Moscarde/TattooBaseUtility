@@ -1,0 +1,61 @@
+DADOS PESSOAIS
+Nome: Guilherme M M Ferreira
+Telefone: 21998206770
+Nascimento: 03/09/2001
+Email: massimo.madeira@gmail.com
+Endereço: Rua Luis Orione 15
+
+ANAMINESE
+Já fez alguma cirurgia?
+Não
+
+Toma algum remédio?
+Não
+
+Toma anticoncepcional?
+Não
+
+Alergia a medicamento?
+Não
+
+Sabe qual a sua pressão?
+Não
+
+Faz tratamento médico?
+Não
+
+Está gestante?
+Não
+
+Problemas no fígado ou rim?
+Não
+
+Você é fumante?
+Não
+
+Já teve hepatite?
+Não
+
+Tem diabetes?
+Não
+
+Tem asma?
+Não
+
+Tem problema cardíaco?
+Não
+
+Já teve convulsão?
+Não
+
+Tem problema renal?
+Não
+
+Costuma sentir tontura?
+Não
+
+COMPRA
+Tattoo: Lufly de oculos + ocelote com aquarela
+Data: 08/04/2023
+Valor:  80 + 130
+Forma de pagamento: Pix

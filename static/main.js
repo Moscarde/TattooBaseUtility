@@ -1,0 +1,6 @@
+document.write('<script src="../static/scripts/scripts.js"></script>')
+document.write('<script src="../static/scripts/media-query.js"></script>')
+document.write('<script src="../static/scripts/pagination.js"></script>')
+document.write('<script src="../static/scripts/customers.js"></script>')
+document.write('<script src="../static/scripts/forms/add-customer.js"></script>')
+document.write('<script src="../static/scripts/forms/add-tattoo.js"></script>')

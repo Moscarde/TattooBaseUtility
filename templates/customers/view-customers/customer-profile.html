@@ -1,0 +1,65 @@
+<div class="card mt-5 p-5 w-100 shadow border-0" id="customer-profile" data-anime="up">
+    <i class="bi bi-arrow-left-circle-fill icon-return" id="btn-return-to-search"></i>
+    <h2 class="d-flex justify-content-center">
+        <span id="customer-name">Cliente</span>
+        <i class="bi bi-pencil-square icon-edit" data-bs-toggle="modal" id="btn-edit-customer"
+            data-bs-target="#staticBackdrop"></i>
+    </h2>
+
+    <p class="fs-3">Informações Pessoais</p>
+    <div class="row profile-info">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Telefone: </strong><span id="customer-phone"></span></li>
+                <li class="list-group-item"><strong>E-mail: </strong><span id="customer-email"></span></li>
+                <li class="list-group-item"><strong>Instagram: </strong><span id="customer-instagram"></span></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Nascimento: </strong><span id="customer-birth"></span></li>
+                <li class="list-group-item"><strong>Endereço: </strong><span id="customer-address"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="btn-edit-customer"
+        data-bs-target="#staticBackdrop">
+        Editar Cliente
+    </button> -->
+    {% include 'customers/view-customers/modal/edit-customer.html' %}
+    {% include 'customers/view-customers/modal/add-tattoo.html' %}
+
+    <div class="customer__actions mt-5 d-flex justify-content-center">
+        <ul>
+            <li><span class="btn btn-primary" id="btn-add-tattoo" data-bs-toggle="modal"
+                data-bs-target="#addTattooModal">Adicionar Tatuagem</span></li>
+        </ul>
+    </div> 
+    <div class="mt-5 search-result">
+
+        <table class="table table-hover" id="result-table">
+            <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Tattoo</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Pagamento</th>
+                </tr>
+            </thead>
+            <tbody id="tattoo-table-body">
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
