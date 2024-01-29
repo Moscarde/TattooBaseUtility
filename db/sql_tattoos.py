@@ -11,7 +11,7 @@ def db_add_tattoo(tattoo):
     date = tattoo["date"]
 
     c.execute(
-        "INSERT INTO tattoos (customer_id, tattoo, description, price, payment, date) VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO tattoos (customer_id, tattoo, description, price, payment, date, time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         [customer_id, tattoo_, description, price, payment, date],
     )
     conn.commit()
@@ -54,10 +54,13 @@ def db_update_tattoo(tattoo):
     tattoo_ = tattoo["tattoo"]
     price = tattoo["price"]
     payment = tattoo["payment"]
+    date = tattoo["date"]
+    time = tattoo["time"]
+    status = tattoo["status"]
 
     c.execute(
-        "UPDATE tattoos SET customer_id = ?, tattoo = ?, price = ?, payment = ? WHERE id = ?",
-        [customer_id, tattoo_, price, payment, tattoo_id],
+        "UPDATE tattoos SET customer_id = ?, tattoo = ?, price = ?, payment = ?, date = ?, time = ?, status = ? WHERE id = ?",
+        [customer_id, tattoo_, price, payment, date, time, status, tattoo_id],
     )
     conn.commit()
 

@@ -13,10 +13,11 @@ def db_add_customer(customer):
     email = customer["email"]
     address = customer["address"]
     instagram = customer["instagram"]
+    observations = customer["observations"]
 
     c.execute(
-        "INSERT INTO customers (name, phone, birth, email, address, instagram) VALUES (?, ?, ?, ?, ?, ?)",
-        [name, phone, birth, email, address, instagram],
+        "INSERT INTO customers (name, phone, birth, email, address, instagram, observations) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [name, phone, birth, email, address, instagram, observations],
     )
     conn.commit()
 
@@ -26,7 +27,6 @@ def db_add_customer(customer):
 
 
 def db_update_customer(customer):
-
     conn, c = connect_database()
 
     customer_id = customer["id"]
@@ -35,10 +35,11 @@ def db_update_customer(customer):
     birth = datetime.now().strftime("%H:%M:%S")
     email = customer["email"]
     address = customer["address"]
+    observations = customer["observations"]
 
     c.execute(
-        "UPDATE customers SET name = ?, phone = ?, birth = ?, email = ?, address = ? WHERE id = ?",
-        [name, phone, birth, email, address, customer_id],
+        "UPDATE customers SET name = ?, phone = ?, birth = ?, email = ?, address = ?, observations = ? WHERE id = ?",
+        [name, phone, birth, email, address, observations, customer_id],
     )
     conn.commit()
 
@@ -61,7 +62,8 @@ def db_get_all_customers():
 def db_get_customer_by(column, term):
     conn, c = connect_database()
 
-    c.execute(f"""SELECT *
+    c.execute(
+        f"""SELECT *
         FROM customers 
         LEFT JOIN tattoos ON customers.id = tattoos.customer_id
         WHERE {column} LIKE ?""",
@@ -106,7 +108,6 @@ def db_get_customer_by(column, term):
             if not customer_exists:
                 search_results.append(customer_data)
 
-    
     return search_results
 
 
