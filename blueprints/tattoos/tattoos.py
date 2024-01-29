@@ -19,6 +19,9 @@ def add_tattoo():
             "price": request.form["price"],
             "payment": request.form["payment"],
             "date": request.form["date"],
+            "time": request.form["time"],
+            "status": request.form["status"],
+            "comission": request.form["comission"]
         }
 
         db_add_tattoo(tattoo)
@@ -55,6 +58,9 @@ def update_tattoo():
             "description": request.form["description"],
             "price": request.form["price"],
             "payment": request.form["payment"],
+            "date": request.form["date"],
+            "time": request.form["time"],
+            "status": request.form["status"],
         }
 
         db_update_tattoo(tattoo)

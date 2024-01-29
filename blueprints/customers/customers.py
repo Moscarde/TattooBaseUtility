@@ -26,6 +26,7 @@ def add_customer():
             "email": request.form["email"],
             "address": request.form["address"],
             "instagram": request.form["instagram"],
+            "observations": request.form["observations"],
         }
 
         if db_add_customer(customer):
@@ -76,6 +77,8 @@ def update_customer():
             "birth": data["birth"],
             "email": data["email"],
             "address": data["address"],
+            "instagram": data["instagram"],
+            "observations": data["observations"],
         }
 
         if db_update_customer(customer):

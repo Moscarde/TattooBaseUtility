@@ -85,16 +85,20 @@ def db_get_customer_by(column, term):
             customer_data["email"] = customer[4]
             customer_data["address"] = customer[5]
             customer_data["instagram"] = customer[6]
+            customer_data["observations"] = customer[7]
             customer_data["tattoos"] = []
 
-            if customer[7]:
+            if customer[8]:
                 tattoo_data = {
-                    "tattoo_id": customer[7],
-                    "tattoo_name": customer[9],
-                    "description": customer[10],
-                    "price": customer[11],
-                    "payment": customer[12],
-                    "date": customer[13],
+                    "tattoo_id": customer[8],
+                    "tattoo_name": customer[10],
+                    "description": customer[11],
+                    "price": customer[12],
+                    "comission": customer[13],
+                    "payment": customer[14],
+                    "date": customer[15],
+                    "time": customer[16],
+                    "status": customer[17],
                 }
                 customer_data["tattoos"].append(tattoo_data)
 
@@ -108,6 +112,7 @@ def db_get_customer_by(column, term):
             if not customer_exists:
                 search_results.append(customer_data)
 
+    # return result
     return search_results
 
 
