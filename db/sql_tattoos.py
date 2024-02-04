@@ -1,21 +1,25 @@
 from db.sql_connection import connect_database
 
-def db_add_tattoo(tattoo):
+
+def db_add_tattoo(
+    customer_id, tattoo_name, description, price, comission, payment, date, time, status
+):
     conn, c = connect_database()
-
-    customer_id = tattoo["customer_id"]
-    tattoo_ = tattoo["tattoo"]
-    description = tattoo["description"]
-    price = tattoo["price"]
-    payment = tattoo["payment"]
-    date = tattoo["date"]
-
     c.execute(
-        "INSERT INTO tattoos (customer_id, tattoo, description, price, payment, date, time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-        [customer_id, tattoo_, description, price, payment, date],
+        "INSERT INTO tattoos (customer_id, tattoo_name, description, price, comission, payment, date, time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+            customer_id,
+            tattoo_name,
+            description,
+            price,
+            comission,
+            payment,
+            date,
+            time,
+            status,
+        ],
     )
     conn.commit()
-
     conn.close()
 
 

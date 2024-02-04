@@ -182,22 +182,7 @@ function updateCustomer(customer) {
         .catch(error => console.error("Error:", error))
 }
 
-// ADD TATTOO MODAL
-addTattooForm = document.querySelector("#add-tattoo-form")
-addTattooForm.addEventListener("submit", (event) => {
-    event.preventDefault()
-    console.log("submit")
-    var opcoes = document.getElementsByName('add-tattoo__comission-radio');
 
-    for (var i = 0; i < opcoes.length; i++) {
-        if (opcoes[i].checked) {
-            var comission = opcoes[i].value;
-            console.log("comission: " + comission)
-            break;
-        }
-    }
-
-})
 
 
 // debug view

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, flash, jsonify
 from db.sql_tattoos import (
     db_get_all_tattoos,
     db_get_tattoo_by_customer_id,
@@ -9,24 +9,36 @@ from db.sql_tattoos import (
 
 tattoos_bp = Blueprint("tattoos_bp", __name__)
 
+
 @tattoos_bp.route("/tattoos/add_tattoo", methods=["POST"])
 def add_tattoo():
     if request.method == "POST":
-        tattoo = {
-            "customer_id": request.form["customer_id"],
-            "tattoo": request.form["tattoo"],
-            "description": request.form["description"],
-            "price": request.form["price"],
-            "payment": request.form["payment"],
-            "date": request.form["date"],
-            "time": request.form["time"],
-            "status": request.form["status"],
-            "comission": request.form["comission"]
-        }
+        data = request.get_json()
+        print(data)
 
-        db_add_tattoo(tattoo)
+        try:
+            db_add_tattoo(
+                customer_id=data["customer_id"],
+                tattoo_name=data["tattoo_name"],
+                description=data["description"],
+                price=data["price"],
+                comission=data["comission"],
+                payment=data["payment"],
+                date=data["date"],
+                time=data["time"],
+                status=data["status"],
+            )
+            flash(f'Tattoo "{data["tattoo_name"]}" criada com sucesso!', "success")
+            return jsonify(
+                {
+                    "status": "success",
+                    "message": f'Tattoo "{data["tattoo_name"]}" criada com sucesso!',
+                }
+            )
 
-        return "Tattoo added successfully"
+        except Exception as e:
+            flash(f"Erro na adição, {str(e)}", "danger")
+            return jsonify({"status": "error", "message": f"Erro na adição, {str(e)}"})
 
 
 @tattoos_bp.route("/tattoos/get_all_tattoos", methods=["GET"])
