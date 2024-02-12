@@ -42,7 +42,6 @@ anaminese_questions = [
     {"question": "Já teve convulsão?", "keyword": "convulsão", "descritive": False},
     {"question": "Tem problema renal?", "keyword": "renal", "descritive": False},
     {"question": "Constuma sentir tontura?", "keyword": "tontura", "descritive": False},
-
 ]
 
 

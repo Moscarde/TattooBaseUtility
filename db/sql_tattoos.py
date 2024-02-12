@@ -50,21 +50,14 @@ def db_get_tattoo_by_customer_id(customer_id):
     return tattoos
 
 
-def db_update_tattoo(tattoo):
+def db_update_tattoo(
+    tattoo_id, tattoo_name, description, price, comission, payment, date, time, status
+):
     conn, c = connect_database()
 
-    tattoo_id = tattoo["id"]
-    customer_id = tattoo["customer_id"]
-    tattoo_ = tattoo["tattoo"]
-    price = tattoo["price"]
-    payment = tattoo["payment"]
-    date = tattoo["date"]
-    time = tattoo["time"]
-    status = tattoo["status"]
-
     c.execute(
-        "UPDATE tattoos SET customer_id = ?, tattoo = ?, price = ?, payment = ?, date = ?, time = ?, status = ? WHERE id = ?",
-        [customer_id, tattoo_, price, payment, date, time, status, tattoo_id],
+        "UPDATE tattoos SET tattoo_name = ?, description = ?, price = ?, comission = ?, payment = ?, date = ?, time = ?, status = ? WHERE id = ?",
+        [ tattoo_name, description, price, comission, payment, date, time, status, tattoo_id],
     )
     conn.commit()
 

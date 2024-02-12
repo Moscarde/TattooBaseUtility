@@ -46,7 +46,6 @@ def get_all_customers():
 
 @customers_bp.route("/customers/get_customer_by_name", methods=["GET"])
 def get_customer_by_name():
-    print('bateu')
     if request.method == "GET":
         return db_get_customer_by_name(request.args.get("name"))
 

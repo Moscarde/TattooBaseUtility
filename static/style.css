@@ -7,6 +7,9 @@ body {
     height: 100%;
 }
 
+.hidden {
+    display: none;
+}
 
 #header {
     position: fixed;
@@ -191,7 +194,7 @@ i.menu-mobile {
 
 
 /* table customers */
-#result-table-body td {
+#result-table-body tr, #customer-tattoo-table-body tr {
     cursor: pointer;
 }
 

@@ -29,6 +29,7 @@
     </button> -->
     {% include 'customers/view-customers/modal/edit-customer.html' %}
     {% include 'customers/view-customers/modal/add-tattoo.html' %}
+    {% include 'customers/view-customers/modal/edit-tattoo.html' %}
 
     <div class="customer__actions mt-5 d-flex justify-content-center">
         <ul>
@@ -38,7 +39,7 @@
     </div> 
     <div class="mt-5 search-result">
 
-        <table class="table table-hover" id="result-table">
+        <table class="table table-hover" id="customer-tattoo-table">
             <thead>
                 <tr>
                     <th scope="col">Data</th>
@@ -48,7 +49,7 @@
                     <th scope="col">Pagamento</th>
                 </tr>
             </thead>
-            <tbody id="tattoo-table-body">
+            <tbody id="customer-tattoo-table-body">
                 <tr>
                     <th scope="row"></th>
                     <td></td>
@@ -59,6 +60,9 @@
                 </tr>
             </tbody>
         </table>
+
+        <button class="btn btn-primary d-none" id="btn-open-edit-tattoo" data-bs-toggle="modal"
+                data-bs-target="#editTattooModal">edit tattoo</button>
     </div>
 
 

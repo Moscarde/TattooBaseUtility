@@ -1,4 +1,4 @@
-addTattooForm = document.querySelector("#add-tattoo-form");
+let addTattooForm = document.querySelector("#add-tattoo__form");
 
 addTattooForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -6,20 +6,17 @@ addTattooForm.addEventListener("submit", (event) => {
 })
 
 function addTattoo() {
-    var radioComission = document.querySelector('input[name="add-tattoo__comission-radio"]:checked').value
-    var radioPayment = document.querySelector('input[name="add-tattoo__payment-radio"]:checked').value
     var tattoo_data = {
         "customer_id": selectedCustomer["id"],
-        "tattoo_name": document.querySelector("#modal-tattoo-name").value,
-        "description": document.querySelector("#modal-tattoo-description").value,
-        "price": document.querySelector("#modal-tattoo-price").value,
-        "comission": document.querySelector('input[name="add-tattoo__comission-radio"]:checked').value,
-        "payment": document.querySelector('input[name="add-tattoo__payment-radio"]:checked').value,
-        "date": document.querySelector("#modal-tattoo-date").value,
-        "time": document.querySelector("#modal-tattoo-time").value,
-        "status": "pending"
+        "tattoo_name": document.querySelector("#add-tattoo__name").value,
+        "description": document.querySelector("#add-tattoo__description").value,
+        "price": document.querySelector("#add-tattoo__price").value,
+        "comission": document.querySelector('input[name="add-tattoo__radio-comission"]:checked').value,
+        "payment": document.querySelector('input[name="add-tattoo__radio-payment"]:checked').value,
+        "date": document.querySelector("#add-tattoo__date").value,
+        "time": document.querySelector("#add-tattoo__time").value
     }
-    console.log(tattoo_data)
+    
 
     var options = {
         method: "POST",

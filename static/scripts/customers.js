@@ -46,7 +46,7 @@ function searchCustomers() {
                     `
                 })
             }
-            createListenersForTableRows()
+            createListenersForTableRowsCustomers()
         })
 
 
@@ -56,7 +56,7 @@ function searchCustomers() {
 }
 
 var selectedCustomer = null
-function createListenersForTableRows() {
+function createListenersForTableRowsCustomers() {
     var resultTableRows = document.querySelectorAll("#result-table-row")
     resultTableRows.forEach((row) => {
         row.addEventListener("click", () => {
@@ -78,16 +78,16 @@ function showCustomerProfile(selectedCustomer) {
     document.querySelector("#customer-address").innerHTML = selectedCustomer.address
     document.querySelector("#customer-instagram").innerHTML = selectedCustomer.instagram
 
-    tattooTableBody = document.querySelector("#tattoo-table-body")
+    tattooTableBody = document.querySelector("#customer-tattoo-table-body")
 
     tattooTableBody.innerHTML = ""
 
     if (selectedCustomer.tattoos.length > 0) {
-        selectedCustomer.tattoos.forEach((tattoo) => {
+        selectedCustomer.tattoos.forEach((tattoo, index) => {
 
 
             tattooTableBody.innerHTML += `
-                        <tr>
+                        <tr id="customer-tattoo-table-row" data-index="${index}">
                             <th scope="row">${tattoo.date}</th>
                             <td>${tattoo.tattoo_name}</td>
                             <td>${tattoo.description}</td>
@@ -97,6 +97,20 @@ function showCustomerProfile(selectedCustomer) {
                     `
         })
     }
+    createListenersForTableRowsTattoos()
+}
+
+function createListenersForTableRowsTattoos() {
+    var resultTableRows = document.querySelectorAll("#customer-tattoo-table-row")
+    resultTableRows.forEach((row) => {
+        row.addEventListener("click", () => {
+            selectedTattoo = selectedCustomer.tattoos[row.dataset.index]
+            document.querySelector("#btn-open-edit-tattoo").click()
+            showTattooInfos(selectedTattoo)
+
+            // window.location.href = `/customers/${row.dataset.id}`
+        })
+    })
 }
 
 function openCustomerProfile() {
@@ -126,7 +140,7 @@ btnEditCustomer.addEventListener("click", () => {
     document.querySelector("#modal-customer-email").value = selectedCustomer.email
     document.querySelector("#modal-customer-birth").value = selectedCustomer.birth
     document.querySelector("#modal-customer-address").value = selectedCustomer.address
-    document.querySelector("#modal-customer-instagram").value = selectedCustomer.instagram    
+    document.querySelector("#modal-customer-instagram").value = selectedCustomer.instagram
 })
 
 editCustomerForm = document.querySelector("#edit-customer-form")
@@ -172,7 +186,7 @@ function updateCustomer(customer) {
     };
     console.log(options)
 
-    
+
     fetch("/customers/update_customer", options)
         .then(response => response.json())
         .then(data => {
@@ -187,12 +201,18 @@ function updateCustomer(customer) {
 
 // debug view
 
-divMenuCustomers.style.display = "none"
-containerCustomerProfile.style.display = "block"
+function debugCustomer() {
 
-searchCustomers()
-setInterval(() => {
-    
-    showCustomerProfile(storedSearch[0])
-    selectedCustomer = storedSearch[0]
-}, 500)
+
+    divMenuCustomers.style.display = "none"
+    containerCustomerProfile.style.display = "block"
+
+    searchCustomers()
+    setInterval(() => {
+
+        showCustomerProfile(storedSearch[0])
+        selectedCustomer = storedSearch[0]
+    }, 500)
+    console.log("debug Customer")
+}
+debugCustomer()

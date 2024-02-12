@@ -1,0 +1,113 @@
+<!-- Modal -->
+<div class="modal fade" id="editTattooModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tatuagem - Informações</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body" id="edit-tattoo">
+                <form id="edit-tattoo__form" class="row g-3">
+                    <input type="text" class="d-none" id="edit-tattoo__id" value="">
+                    <div class="col-md-12">
+                        <label for="name" class="form-label">Nome da tatuagem</label>
+                        <input type="text" class="form-control" id="edit-tattoo__name" name="name"
+                            placeholder="Digite o nome para a tattoo..." required>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="description" class="form-label">Descrição</label>
+                        <input type="text" class="form-control" id="edit-tattoo__description" name="description"
+                            placeholder="Digite uma descrição...">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="price" class="form-label">Valor</label>
+                        <input type="text" class="form-control" id="edit-tattoo__price" name="price"
+                            placeholder="$999...">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Comissão %</label>
+
+                        <div class="btn-group d-flex justify-content-center" role="group"
+                            aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-comission"
+                                id="edit-tattoo__radio-comission1" autocomplete="off" value="40" checked>
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-comission1">40%</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-comission"
+                                id="edit-tattoo__radio-comission2" autocomplete="off" value="60">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-comission2">60%</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-comission"
+                                id="edit-tattoo__radio-comission3" autocomplete="off" value="100">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-comission3">100%</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Tipo de pagamento</label>
+
+                        <div class="btn-group d-flex justify-content-center" role="group"
+                            aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-payment"
+                                id="edit-tattoo__radio-payment1" autocomplete="off" value="pix" checked>
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-payment1">Pix</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-payment"
+                                id="edit-tattoo__radio-payment2" autocomplete="off" value="credit">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-payment2">Crédito</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-payment"
+                                id="edit-tattoo__radio-payment3" autocomplete="off" value="debit">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-payment3">Débito</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-payment"
+                                id="edit-tattoo__radio-payment4" autocomplete="off" value="cash">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-payment4">Dinheiro</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="date" class="form-label">Dia</label>
+                        <input type="date" class="form-control" id="edit-tattoo__date" name="date">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="time" class="form-label">Horario</label>
+                        <input type="time" class="form-control" id="edit-tattoo__time" name="time">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Status</label>
+
+                        <div class="btn-group d-flex justify-content-center" role="group"
+                            aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
+                                id="edit-tattoo__radio-status1" autocomplete="off" value="canceled " checked>
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status1">Cancelado</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
+                                id="edit-tattoo__radio-status2" autocomplete="off" value="scheduled">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status2">Agendado</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
+                                id="edit-tattoo__radio-status3" autocomplete="off" value="done">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status3">Feito</label>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

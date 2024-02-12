@@ -26,7 +26,7 @@ def add_tattoo():
                 payment=data["payment"],
                 date=data["date"],
                 time=data["time"],
-                status=data["status"],
+                status="scheduled",
             )
             flash(f'Tattoo "{data["tattoo_name"]}" criada com sucesso!', "success")
             return jsonify(
@@ -63,21 +63,32 @@ def delete_tattoo():
 @tattoos_bp.route("/tattoos/update_tattoo", methods=["POST"])
 def update_tattoo():
     if request.method == "POST":
-        tattoo = {
-            "id": request.form["id"],
-            "customer_id": request.form["customer_id"],
-            "tattoo": request.form["tattoo"],
-            "description": request.form["description"],
-            "price": request.form["price"],
-            "payment": request.form["payment"],
-            "date": request.form["date"],
-            "time": request.form["time"],
-            "status": request.form["status"],
-        }
+        data = request.get_json()
 
-        db_update_tattoo(tattoo)
+        try:
+            db_update_tattoo(
+                tattoo_id=data["tattoo_id"],
+                tattoo_name=data["tattoo_name"],
+                description=data["description"],
+                price=data["price"],
+                comission=data["comission"],
+                payment=data["payment"],
+                date=data["date"],
+                time=data["time"],
+                status=data["status"],
+            )
+            flash(f'Tattoo "{data["tattoo_name"]}" atualizada com sucesso!', "success")
+            return jsonify(
+                {
+                    "status": "success",
+                    "message": f'Tattoo "{data["tattoo_name"]}" atualizada com sucesso!',
+                }
+            )
 
-        return "Tattoo updated successfully"
+        except Exception as e:
+            flash(f"Erro na adição, {str(e)}", "danger")
+            return jsonify({"status": "error", "message": f"Erro na edição, {str(e)}"})
+            
 
 
 @tattoos_bp.route("/tattoos/test", methods=["GET"])
