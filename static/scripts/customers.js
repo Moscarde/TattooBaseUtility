@@ -214,7 +214,7 @@ function debugCustomer() {
 
         showCustomerProfile(storedSearch[0])
         selectedCustomer = storedSearch[0]
-    }, 500)
+    }, 1500)
     console.log("debug Customer")
 }
 debugCustomer()
