@@ -1,0 +1,12 @@
+<p>Hello</p>
+<form action="/tattoos/test" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Enviar</button>
+</form>
+<h2>Imagens:</h2>
+<img src="../static/img/tattoos/tattoo1.jpg" alt="" srcset=" ">
+<!-- <ul>
+    {% for image in images %}
+        <li><a href="{{ url_for('download', id=image['id']) }}">{{ image['image_name'] }}</a></li>
+    {% endfor %}
+</ul> -->

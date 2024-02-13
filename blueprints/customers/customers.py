@@ -10,7 +10,6 @@ from db.sql_customers import (
 
 customers_bp = Blueprint("customers_bp", __name__)
 
-
 @customers_bp.route("/customers/test", methods=["GET"])
 def customers():
     return "Pong"

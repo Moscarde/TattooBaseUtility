@@ -77,6 +77,8 @@ function showCustomerProfile(selectedCustomer) {
     document.querySelector("#customer-birth").innerHTML = selectedCustomer.birth
     document.querySelector("#customer-address").innerHTML = selectedCustomer.address
     document.querySelector("#customer-instagram").innerHTML = selectedCustomer.instagram
+    
+    document.querySelector("#add-tattoo__customer-id").value = selectedCustomer.id
 
     tattooTableBody = document.querySelector("#customer-tattoo-table-body")
 

@@ -99,6 +99,7 @@ def db_get_customer_by(column, term):
                     "date": customer[15],
                     "time": customer[16],
                     "status": customer[17],
+                    "images": customer[18].split(';') if customer[18] else [],
                 }
                 customer_data["tattoos"].append(tattoo_data)
 

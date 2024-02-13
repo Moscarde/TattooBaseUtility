@@ -165,6 +165,62 @@ i.menu-mobile {
     color: #a8a9b4;
 }
 
+/* tattoos modal */
+.picture__input {
+    display: none;
+    outline: 1px solid #000;
+}
+
+.picture {
+    width: 200px;
+    height: 200px;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #aaa;
+    border: 2px dashed currentColor;
+    transition: all 0.2s ease-in-out;
+}
+
+.picture:hover {
+    background: #ccc;
+    color: #777;
+}
+
+.picture:active {
+    color: #666;
+}
+
+.picture__img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
+.add-tattoo__images-list {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+
+.add-tattoo__images-list li {
+    flex: 0 0 auto;
+    margin: 5px;
+}
+
+
+
+.tattoo-images img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: .2rem;
+}
 
 /* Form */
 #btn-send-spinner,
@@ -194,13 +250,14 @@ i.menu-mobile {
 
 
 /* table customers */
-#result-table-body tr, #customer-tattoo-table-body tr {
+#result-table-body tr,
+#customer-tattoo-table-body tr {
     cursor: pointer;
 }
 
 
 /* Animations */
-.window{
+.window {
     display: none;
     transition: opacity 0.5s ease-in-out;
 }

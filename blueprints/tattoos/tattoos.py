@@ -1,4 +1,7 @@
-from flask import Blueprint, request, flash, jsonify
+from flask import Blueprint, request, flash, jsonify, redirect
+from werkzeug.utils import secure_filename
+import os
+from db.sql_connection import connect_database
 from db.sql_tattoos import (
     db_get_all_tattoos,
     db_get_tattoo_by_customer_id,
@@ -12,33 +15,38 @@ tattoos_bp = Blueprint("tattoos_bp", __name__)
 
 @tattoos_bp.route("/tattoos/add_tattoo", methods=["POST"])
 def add_tattoo():
+    # print(request.files)
     if request.method == "POST":
-        data = request.get_json()
-        print(data)
-
         try:
+            files_list = []
+            for file in request.files.getlist("image"):
+                files_list.append(file)
+            
+            print(files_list)
+
             db_add_tattoo(
-                customer_id=data["customer_id"],
-                tattoo_name=data["tattoo_name"],
-                description=data["description"],
-                price=data["price"],
-                comission=data["comission"],
-                payment=data["payment"],
-                date=data["date"],
-                time=data["time"],
+                customer_id=request.form["customer_id"],
+                tattoo_name=request.form["name"],
+                images=files_list if len(files_list) > 0 else None,
+                description=request.form["description"],
+                price=request.form["price"],
+                comission=request.form["comission"],
+                payment=request.form["payment"],
+                date=request.form["date"],
+                time=request.form["time"],
                 status="scheduled",
             )
-            flash(f'Tattoo "{data["tattoo_name"]}" criada com sucesso!', "success")
+
             return jsonify(
                 {
-                    "status": "success",
-                    "message": f'Tattoo "{data["tattoo_name"]}" criada com sucesso!',
+                    "type": "success",
+                    "message": f"Tattoo {request.form['name']} criada com sucesso!",
                 }
             )
 
         except Exception as e:
             flash(f"Erro na adição, {str(e)}", "danger")
-            return jsonify({"status": "error", "message": f"Erro na adição, {str(e)}"})
+            return jsonify({"type": "error", "message": f"Erro na adição, {str(e)}"})
 
 
 @tattoos_bp.route("/tattoos/get_all_tattoos", methods=["GET"])
@@ -80,21 +88,27 @@ def update_tattoo():
             flash(f'Tattoo "{data["tattoo_name"]}" atualizada com sucesso!', "success")
             return jsonify(
                 {
-                    "status": "success",
+                    "type": "success",
                     "message": f'Tattoo "{data["tattoo_name"]}" atualizada com sucesso!',
                 }
             )
 
         except Exception as e:
             flash(f"Erro na adição, {str(e)}", "danger")
-            return jsonify({"status": "error", "message": f"Erro na edição, {str(e)}"})
-            
+            return jsonify({"type": "error", "message": f"Erro na edição, {str(e)}"})
 
 
-@tattoos_bp.route("/tattoos/test", methods=["GET"])
+@tattoos_bp.route("/tattoos/test", methods=["POST"])
 def test():
-    from scripts.test_driver import initialize_driver
+    if "image" in request.files:
+        image = request.files["image"]
+        if image.filename != "":
+            filename = secure_filename(image.filename)
+            image.save(os.path.join("uploads", filename))
 
-    driver = initialize_driver()
-    driver.get("https://www.google.com/")
-    return "Pong"
+            conn, c = connect_database()
+            c.execute("INSERT INTO images (image_name) VALUES (?)", (filename,))
+            conn.commit()
+            conn.close()
+
+    return redirect("/")

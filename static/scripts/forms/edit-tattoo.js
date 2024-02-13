@@ -3,6 +3,12 @@ function showTattooInfos(tattoo) {
 
     document.querySelector("#edit-tattoo__id").value = tattoo.tattoo_id
     document.querySelector("#edit-tattoo__name").value = tattoo.tattoo_name
+
+    for (let i = 0; i < tattoo.images.length; i++) {
+        document.querySelector("#edit-tattoo__images").innerHTML += '<img src="../../../static/img/tattoos/' + tattoo.images[i] + '" class="rounded" alt="...">'
+    
+    }
+
     document.querySelector("#edit-tattoo__description").value = tattoo.description
     document.querySelector("#edit-tattoo__price").value = tattoo.price
     document.querySelector("#edit-tattoo__date").value = tattoo.date

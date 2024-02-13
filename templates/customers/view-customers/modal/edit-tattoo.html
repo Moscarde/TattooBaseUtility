@@ -18,6 +18,14 @@
                     </div>
 
                     <div class="col-md-12">
+                        <label for="images" class="form-label ">Fotos</label>
+                        <input type="file" class="btn btn-secondary d-block" id="edit-tattoo__input-image" name="image" accept="image/*" required>
+                        <div class="text-center tattoo-images" id="edit-tattoo__images">
+                            <!-- js render -->
+                        </div>
+                        <input type="file" class="form-control d-none" id="edit-tattoo__photos" name="photos" multiple>
+                    </div>
+                    <div class="col-md-12">
                         <label for="description" class="form-label">Descrição</label>
                         <input type="text" class="form-control" id="edit-tattoo__description" name="description"
                             placeholder="Digite uma descrição...">
@@ -100,6 +108,8 @@
 
                         </div>
                     </div>
+
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

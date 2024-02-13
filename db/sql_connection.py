@@ -39,10 +39,12 @@ def start_database():
         date TEXT,
         time TEXT,
         status TEXT,
+        images TEXT,
         FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE CASCADE
     )"""
     )
     conn.commit()
+
 
     conn.close()
 
@@ -70,9 +72,9 @@ def populate_database(table, data):
 
     elif table == "tattoos":
         query = f"""
-            INSERT INTO tattoos (customer_id, tattoo_name, description, price, comission, payment, date, time, status)
+            INSERT INTO tattoos (customer_id, tattoo_name, description, price, comission, payment, date, time, status, images)
             VALUES
-                ({data["customer_id"]}, '{data["tattoo_name"]}', '{data["description"]}', {data["price"]}, {data["comission"]}, '{data["payment"]}', '{data["date"]}', '{data["time"]}', '{data["status"]}')
+                ({data["customer_id"]}, '{data["tattoo_name"]}', '{data["description"]}', {data["price"]}, {data["comission"]}, '{data["payment"]}', '{data["date"]}', '{data["time"]}', '{data["status"]}', '{data["images"]}')
                 """
 
         c.execute(query)
@@ -81,6 +83,10 @@ def populate_database(table, data):
 
 
 if __name__ == "__main__":
+    #remove db if exists
+    import os
+    if os.path.exists(db_path):
+        os.remove(db_path)
     start_database()
     print("Base criada")
 
@@ -139,10 +145,11 @@ if __name__ == "__main__":
             "description": "Description 1",
             "price": 100,
             "comission": 40,
-            "payment": "Cash",
+            "payment": "cash",
             "date": "2022-01-01",
             "time": "10:00",
-            "status": "Done",
+            "status": "done",
+            "images": "tattoo1.jpg;tattoo2.jpg;tattoo3.jpg",
         },
         {
             "customer_id": 2,
@@ -150,10 +157,11 @@ if __name__ == "__main__":
             "description": "Description 2",
             "price": 200,
             "comission": 40,
-            "payment": "Credit Card",
+            "payment": "credit",
             "date": "2022-02-02",
             "time": "11:00",
-            "status": "Scheduled",
+            "status": "scheduled",
+            "images": "tattoo3.jpg",
         },
         {
             "customer_id": 3,
@@ -161,10 +169,11 @@ if __name__ == "__main__":
             "description": "Description 3",
             "price": 300,
             "comission": 60,
-            "payment": "Cash",
+            "payment": "cash",
             "date": "2022-03-03",
             "time": "12:00",
-            "status": "Scheduled",
+            "status": "scheduled",
+            "images": "tattoo1.jpg;tattoo2.jpg;tattoo3.jpg",
         },
         {
             "customer_id": 4,
@@ -172,10 +181,11 @@ if __name__ == "__main__":
             "description": "Description 4",
             "price": 400,
             "comission": 60,
-            "payment": "Credit Card",
+            "payment": "credit",
             "date": "2022-04-04",
             "time": "13:00",
-            "status": "Scheduled",
+            "status": "scheduled",
+            "images": "tattoo1.jpg;tattoo2.jpg;tattoo3.jpg",
         },
         {
             "customer_id": 4,
@@ -183,12 +193,14 @@ if __name__ == "__main__":
             "description": "Description 5",
             "price": 500,
             "comission": 100,
-            "payment": "Cash",
+            "payment": "cash",
             "date": "2022-05-05",
             "time": "14:00",
-            "status": "Done",
+            "status": "done",
+            "images": "tattoo1.jpg;tattoo2.jpg;tattoo3.jpg",
         },
     ]
+
 
     for customer in data_customers:
         populate_database("customers", customer)
