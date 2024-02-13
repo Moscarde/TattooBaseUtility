@@ -27,14 +27,14 @@
         data-bs-target="#staticBackdrop">
         Editar Cliente
     </button> -->
-    {% include 'customers/view-customers/modal/edit-customer.html' %}
-    {% include 'customers/view-customers/modal/add-tattoo.html' %}
-    {% include 'customers/view-customers/modal/edit-tattoo.html' %}
+    {% include 'customers/customer-profile/modal/edit-customer.html' %}
+    {% include 'customers/customer-profile/modal/add-tattoo.html' %}
+    {% include 'customers/customer-profile/modal/edit-tattoo.html' %}
 
     <div class="customer__actions mt-5 d-flex justify-content-center">
         <ul>
             <li><span class="btn btn-primary" id="btn-add-tattoo" data-bs-toggle="modal"
-                data-bs-target="#addTattooModal">Adicionar Tatuagem</span></li>
+                data-bs-target="#add-tattoo">Adicionar Tatuagem</span></li>
         </ul>
     </div> 
     <div class="mt-5 search-result">
@@ -65,7 +65,7 @@
         </div> -->
 
         <button class="btn btn-primary d-none" id="btn-open-edit-tattoo" data-bs-toggle="modal"
-                data-bs-target="#editTattooModal">edit tattoo</button>
+                data-bs-target="#edit-tattoo">edit tattoo</button>
     </div>
 
 

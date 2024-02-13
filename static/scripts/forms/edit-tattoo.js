@@ -1,12 +1,29 @@
 function showTattooInfos(tattoo) {
     console.log(tattoo)
-
+    filePreviews = [];
     document.querySelector("#edit-tattoo__id").value = tattoo.tattoo_id
     document.querySelector("#edit-tattoo__name").value = tattoo.tattoo_name
 
+    const tattooImagesContainer = document.querySelector("#edit-tattoo__images");
     for (let i = 0; i < tattoo.images.length; i++) {
-        document.querySelector("#edit-tattoo__images").innerHTML += '<img src="../../../static/img/tattoos/' + tattoo.images[i] + '" class="rounded" alt="...">'
-    
+
+        const img = document.createElement("img");
+        img.src = '../../../static/img/tattoos/' + tattoo.images[i];
+        img.classList.add("picture__img");
+
+        const listItem = document.createElement("li");
+        listItem.classList.add("picture__item");
+        listItem.appendChild(img);
+        filePreviews.push(tattoo.images[i]);
+
+        listItem.addEventListener("click", () => {
+            filePreviews.splice(filePreviews.indexOf(listItem.querySelector("img").src), 1);
+            listItem.remove();
+        })
+
+        const lastChild = tattooImagesContainer.lastElementChild;
+        tattooImagesContainer.insertBefore(listItem, lastChild);
+
     }
 
     document.querySelector("#edit-tattoo__description").value = tattoo.description
@@ -47,40 +64,70 @@ let editTattooForm = document.querySelector("#edit-tattoo__form");
 editTattooForm.addEventListener("submit", (event) => {
     event.preventDefault()
     editTattoo()
+    clearEditTattooForm()
+    editTattooForm.querySelector('button[data-bs-dismiss="modal"]').click()
 })
 
 function editTattoo() {
-    var tattoo_data = {
-        "tattoo_id": document.querySelector("#edit-tattoo__id").value,
-        "tattoo_name": document.querySelector("#edit-tattoo__name").value,
-        "description": document.querySelector("#edit-tattoo__description").value,
-        "price": document.querySelector("#edit-tattoo__price").value,
-        "comission": document.querySelector('input[name="edit-tattoo__radio-comission"]:checked').value,
-        "payment": document.querySelector('input[name="edit-tattoo__radio-payment"]:checked').value,
-        "date": document.querySelector("#edit-tattoo__date").value,
-        "time": document.querySelector("#edit-tattoo__time").value,
-        "status": document.querySelector('input[name="edit-tattoo__radio-status"]:checked').value,
+    var tattooFormData = new FormData();
+
+    tattooFormData.append("tattoo_id", document.querySelector("#edit-tattoo__id").value)
+    tattooFormData.append("name", document.querySelector("#edit-tattoo__name").value)
+
+    // var inputImage = document.querySelector("#edit-tattoo__input-image");
+    // for (var i = 0; i < inputImage.files.length; i++) {
+    //     tattooFormData.append("image", inputImage.files[i]);
+    // }
+    tattooFormData.append("description", document.querySelector("#edit-tattoo__description").value)
+    tattooFormData.append("price", document.querySelector("#edit-tattoo__price").value)
+    tattooFormData.append("comission", document.querySelector('input[name="edit-tattoo__radio-comission"]:checked').value);
+    tattooFormData.append("payment", document.querySelector('input[name="edit-tattoo__radio-payment"]:checked').value);
+    tattooFormData.append("status", document.querySelector('input[name="edit-tattoo__radio-status"]:checked').value)
+    tattooFormData.append("date", document.querySelector("#edit-tattoo__date").value);
+    tattooFormData.append("time", document.querySelector("#edit-tattoo__time").value);
+
+    for (let i = 0; i < filePreviews.length; i++) {
+        if (filePreviews[i].length > 1000) {
+            const base64 = filePreviews[i].split(',')[1];
+            const blob = base64toBlob(base64);
+            tattooFormData.append("image", blob, `tattoo_image_${i}.png`);
+        }
+        else {
+            tattooFormData.append("old_image", filePreviews[i]);
+        }
     }
 
+    console.log(tattooFormData)
 
     var options = {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(tattoo_data)
+        body: tattooFormData
     };
 
-    console.log(tattoo_data)
     fetch("/tattoos/update_tattoo", options)
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            showFlashAlert(data.message, data.type)
 
         })
         .catch(error => console.error("Error:", error))
-    
 
-    
+
+
+}
+
+function clearEditTattooForm() {
+
+    document.querySelector("#edit-tattoo__id").value = ""
+    document.querySelector("#edit-tattoo__name").value = ""
+    document.querySelector("#edit-tattoo__description").value = ""
+    document.querySelector("#edit-tattoo__price").value = ""
+    document.querySelector("#edit-tattoo__date").value = ""
+    document.querySelector("#edit-tattoo__time").value = ""
+
+    document.querySelectorAll(".picture__img").forEach(element => {
+        element.remove()
+    })
 }
 // document.querySelector("#edit-tattoo") 

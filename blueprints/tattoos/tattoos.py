@@ -21,7 +21,7 @@ def add_tattoo():
             files_list = []
             for file in request.files.getlist("image"):
                 files_list.append(file)
-            
+
             print(files_list)
 
             db_add_tattoo(
@@ -71,31 +71,45 @@ def delete_tattoo():
 @tattoos_bp.route("/tattoos/update_tattoo", methods=["POST"])
 def update_tattoo():
     if request.method == "POST":
-        data = request.get_json()
+        # try:
+            files_list = []
+            for file in request.files.getlist("image"):
+                files_list.append(file)
 
-        try:
+            old_image_list = []
+            for image in request.form.getlist("old_image"):
+                old_image_list.append(image)
+
+            print("files_list", files_list)
+            print("request.form", request.form)
+
             db_update_tattoo(
-                tattoo_id=data["tattoo_id"],
-                tattoo_name=data["tattoo_name"],
-                description=data["description"],
-                price=data["price"],
-                comission=data["comission"],
-                payment=data["payment"],
-                date=data["date"],
-                time=data["time"],
-                status=data["status"],
+                tattoo_id=request.form["tattoo_id"],
+                tattoo_name=request.form["name"],
+                description=request.form["description"],
+                price=request.form["price"],
+                comission=request.form["comission"],
+                payment=request.form["payment"],
+                date=request.form["date"],
+                time=request.form["time"],
+                status=request.form["status"],
+                new_images=files_list if len(files_list) > 0 else None,
+                old_images=(
+                    old_image_list if len(old_image_list) > 0 else None
+                ),
             )
-            flash(f'Tattoo "{data["tattoo_name"]}" atualizada com sucesso!', "success")
+
+            flash(f'Tattoo "{request.form["name"]}" atualizada com sucesso!', "success")
             return jsonify(
                 {
                     "type": "success",
-                    "message": f'Tattoo "{data["tattoo_name"]}" atualizada com sucesso!',
+                    "message": f'Tattoo "{request.form["name"]}" atualizada com sucesso!',
                 }
             )
 
-        except Exception as e:
-            flash(f"Erro na adição, {str(e)}", "danger")
-            return jsonify({"type": "error", "message": f"Erro na edição, {str(e)}"})
+        # except Exception as e:
+        #     flash(f"Erro na adição, {str(e)}", "danger")
+        #     return jsonify({"type": "error", "message": f"Erro na edição, {str(e)}"})
 
 
 @tattoos_bp.route("/tattoos/test", methods=["POST"])

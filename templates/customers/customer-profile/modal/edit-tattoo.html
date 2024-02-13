@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="editTattooModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="edit-tattoo" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -18,13 +18,41 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label for="images" class="form-label ">Fotos</label>
-                        <input type="file" class="btn btn-secondary d-block" id="edit-tattoo__input-image" name="image" accept="image/*" required>
-                        <div class="text-center tattoo-images" id="edit-tattoo__images">
-                            <!-- js render -->
+                        <label class="form-label">Status</label>
+
+                        <div class="btn-group d-flex justify-content-center" role="group"
+                            aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
+                                id="edit-tattoo__radio-status1" autocomplete="off" value="canceled " checked>
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status1">Cancelado</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
+                                id="edit-tattoo__radio-status2" autocomplete="off" value="scheduled">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status2">Agendado</label>
+
+                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
+                                id="edit-tattoo__radio-status3" autocomplete="off" value="done">
+                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status3">Feito</label>
+
                         </div>
-                        <input type="file" class="form-control d-none" id="edit-tattoo__photos" name="photos" multiple>
                     </div>
+
+                    <div class="col-md-12">
+                        <label for="images" class="form-label">Imagens</label>
+                        <!-- <input type="file" name="image" class="btn btn-secondary d-block" id="add-tattoo__input-image"
+                            accept="image/*" multiple> -->
+                        <ul class="add-tattoo__images-list" id="edit-tattoo__images">
+                            <li>
+                                <!-- js render -->
+                                <label class="picture" tabindex="0">
+                                    <input type="file" accept="image/*" class="picture__input" multiple>
+                                    <span class="picture__image">Selecione uma imagem</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                    </div>
+                    
                     <div class="col-md-12">
                         <label for="description" class="form-label">Descrição</label>
                         <input type="text" class="form-control" id="edit-tattoo__description" name="description"
@@ -89,25 +117,7 @@
                         <input type="time" class="form-control" id="edit-tattoo__time" name="time">
                     </div>
 
-                    <div class="col-md-12">
-                        <label class="form-label">Status</label>
-
-                        <div class="btn-group d-flex justify-content-center" role="group"
-                            aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
-                                id="edit-tattoo__radio-status1" autocomplete="off" value="canceled " checked>
-                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status1">Cancelado</label>
-
-                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
-                                id="edit-tattoo__radio-status2" autocomplete="off" value="scheduled">
-                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status2">Agendado</label>
-
-                            <input type="radio" class="btn-check" name="edit-tattoo__radio-status"
-                                id="edit-tattoo__radio-status3" autocomplete="off" value="done">
-                            <label class="btn btn-outline-primary" for="edit-tattoo__radio-status3">Feito</label>
-
-                        </div>
-                    </div>
+                    
 
 
 

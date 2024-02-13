@@ -4,6 +4,7 @@ addTattooForm.addEventListener("submit", (event) => {
     event.preventDefault()
     addTattoo()
     addTattooForm.querySelector('button[data-bs-dismiss="modal"]').click()
+    clearForm()
 })
 
 function addTattoo() {
@@ -46,6 +47,17 @@ function addTattoo() {
 
         })
         .catch(error => console.error("Error:", error))
+}
+
+function clearForm() {
+    document.querySelector("#add-tattoo__name").value = ""
+    document.querySelector("#add-tattoo__description").value = ""
+    document.querySelector("#add-tattoo__price").value = ""
+    document.querySelector("#add-tattoo__date").value = ""
+    document.querySelector("#add-tattoo__time").value = ""
+    // document.querySelector("#add-tattoo__radio-comission").checked = true
+    // document.querySelector("#add-tattoo__radio-payment").checked = true
+    filePreviews = []
 }
 
 function base64toBlob(base64) {

@@ -25,29 +25,9 @@ def db_add_tattoo(
     status,
 ):
 
-    filenames = []
-    if images is not None:
-        for image in images:
-            if image and allowed_file(image.filename):
-                filename = (
-                    customer_id
-                    + "_"
-                    + tattoo_name
-                    + "_"
-                    + str(datetime.now().timestamp())
-                    + "."
-                    + secure_filename(image.filename).split(".")[-1]
-                )
-                image.save(
-                    os.path.join(
-                        "static/img/tattoos",
-                        filename,
-                    )
-                )
-                filenames.append(filename)
-
-    string_filenames = ";".join(filenames) if len(filenames) > 0 else None
-    print(string_filenames)
+    string_filenames = process_images(
+        new_images=images, tattoo_name=tattoo_name
+    )
 
     conn, c = connect_database()
     c.execute(
@@ -97,12 +77,29 @@ def db_get_tattoo_by_customer_id(customer_id):
 
 
 def db_update_tattoo(
-    tattoo_id, tattoo_name, description, price, comission, payment, date, time, status
+    tattoo_id,
+    tattoo_name,
+    description,
+    price,
+    comission,
+    payment,
+    date,
+    time,
+    status,
+    new_images,
+    old_images,
 ):
+
+    print("new_images", new_images)
+    print("old_images", old_images)
+
+    string_filenames = process_images(
+        new_images=new_images, tattoo_name=tattoo_name, old_images=old_images
+    )
     conn, c = connect_database()
 
     c.execute(
-        "UPDATE tattoos SET tattoo_name = ?, description = ?, price = ?, comission = ?, payment = ?, date = ?, time = ?, status = ? WHERE id = ?",
+        "UPDATE tattoos SET tattoo_name = ?, description = ?, price = ?, comission = ?, payment = ?, date = ?, time = ?, status = ?, images = ? WHERE id = ?",
         [
             tattoo_name,
             description,
@@ -112,9 +109,38 @@ def db_update_tattoo(
             date,
             time,
             status,
+            string_filenames,
             tattoo_id,
         ],
     )
     conn.commit()
 
     conn.close()
+
+
+def process_images(new_images, tattoo_name, old_images=None):
+    filenames = []
+    if new_images is not None:
+        for image in new_images:
+            if image and allowed_file(image.filename):
+                filename = (
+                    tattoo_name
+                    + "_"
+                    + str(datetime.now().timestamp())
+                    + "."
+                    + secure_filename(image.filename).split(".")[-1]
+                )
+                image.save(
+                    os.path.join(
+                        "static/img/tattoos",
+                        filename,
+                    )
+                )
+                filenames.append(filename)
+
+    if old_images is not None:
+        for image_filename in old_images:
+            filenames.append(image_filename)
+
+    string_filenames = ";".join(filenames) if len(filenames) > 0 else None
+    return string_filenames

@@ -14,7 +14,7 @@ btnOpenAddCustomerMenu.addEventListener("click", () => {
 })
 
 // Open Search Customer container
-btnOpenViewCustomersMenu = document.querySelector("#customers-menu__btn-view-customers")
+btnOpenViewCustomersMenu = document.querySelector("#customers-menu__btn-search-customers")
 btnOpenViewCustomersMenu.addEventListener("click", () => {
     divMenuCustomers.style.display = "none"
     containerSearchCustomer.style.display = "block"
