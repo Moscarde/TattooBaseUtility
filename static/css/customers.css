@@ -1,0 +1,247 @@
+#customers {
+    background-color: #fafafa;
+}
+
+.icon-return {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    font-size: 32px;
+    color: #3c3c3c;
+    cursor: pointer
+}
+
+.customers__menu {
+    position: relative;
+}
+
+.customers__menu ul {
+    display: flex;
+    justify-content: left;
+
+}
+
+.customers__menu ul li {
+    list-style: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #8C8E90;
+    /* padding: 0 0.5rem; */
+    text-align: center;
+    margin-right: 0.5rem;
+    z-index: 10;
+    transition: 0.2s ease-in-out;
+    padding-bottom: 10px;
+    border-bottom: #ECECEE 2px solid;
+}
+
+.customers__menu ul li:hover {
+    /* background-color: #252c90; */
+    color: #4D4AEA;
+    border-bottom: #4D4AEA 2px solid;
+}
+
+.customers__menu ul li.active {
+    color: #4D4AEA;
+    border-bottom: #4D4AEA 2px solid;
+}
+
+.customers__horizontal-bar {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ECECEE;
+    z-index: 1;
+    bottom: 0px;
+    /* Posiciona 1px acima do elemento ul */
+
+}
+
+/* Customer list - table */
+.search-customer__table {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.search-customer__table th {
+    background-color: #c6d9ee;
+    /* border: 1px solid #000; */
+    text-align: center;
+    font-weight: 400;
+    height: 70px;
+    vertical-align: middle;
+}
+
+.search-customer__td-image-name {
+    display: flex;
+    align-items: center;
+}
+
+.search-customer__td-image-name img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 1.5rem;
+}
+
+.search-customer__table p {
+    margin: 0;
+}
+
+.search-customer__table td {
+    cursor: pointer;
+    height: 70px;
+    vertical-align: middle;
+}
+
+
+/* RESET */
+.customers__menu ul {
+    padding-left: 0;
+}
+
+
+/* tattoos modal */
+.picture__input {
+    display: none;
+    outline: 1px solid #000;
+}
+
+.picture {
+    width: 200px;
+    height: 200px;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #aaa;
+    border: 2px dashed currentColor;
+    transition: all 0.2s ease-in-out;
+}
+
+.picture:hover {
+    background: #ccc;
+    color: #777;
+}
+
+.picture:active {
+    color: #666;
+}
+
+
+.add-tattoo__images-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.picture__item {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.picture__item img {
+    width: 200px;
+    height: 200px;
+    transition: filter 0.3s ease-in-out;
+    object-fit: cover;
+}
+
+.picture__item::after {
+    content: 'X';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.picture__item:hover img {
+    filter: brightness(60%) sepia(90%) hue-rotate(10deg);
+    cursor: pointer;
+}
+
+.picture__item:hover::after {
+    opacity: 1;
+}
+
+.add-tattoo__images-list li {
+    flex: 0 0 auto;
+    margin: 5px;
+}
+
+.tattoo-images img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: .2rem;
+}
+
+
+
+
+/* Form */
+/* #btn-send-spinner,
+#anaminese,
+#add-customer,
+#search-customer,
+#customer-profile {
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+} */
+
+/* Flash Alert */
+#flash-alert {
+    position: fixed;
+    z-index: 10;
+    top: 30px;
+    right: 30px;
+}
+
+
+
+
+
+
+
+/* table customers */
+#search-customer__table-body tr,
+#customer-tattoo-table-body tr {
+    cursor: pointer;
+}
+
+
+/* Animations */
+/* .window {
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+} */
+
+.icon-edit {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.icon-edit:hover {
+    color: #149ddd;
+    transition: 0.25s ease-in-out;
+}
+
+
+.customer__actions ul {
+    list-style: none;
+    padding-left: 0;
+}

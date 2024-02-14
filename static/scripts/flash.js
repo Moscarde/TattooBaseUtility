@@ -23,3 +23,5 @@ function showFlashAlert(mensagem, type) {
         flashAlert.classList.remove('show');
     }, 5000);
 }
+
+export { showFlashAlert }

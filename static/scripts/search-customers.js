@@ -1,3 +1,5 @@
+import { showCustomerProfile } from './customer-profile.js';
+import { openCustomerProfile } from './pagination.js';
 
 // -- Card Search Customer --
 // var to store search query
@@ -10,16 +12,16 @@ function searchCustomers() {
     fetch(`/customers/get_customer_by_name?name=${searchQuery}`)
         .then(response => response.json())
         .then(data => {
-            // console.log(data)
+
             storedSearch = data
-            resultTableBody = document.querySelector("#result-table-body")
+            const resultTableBody = document.querySelector("#search-customer-table-body")
 
             resultTableBody.innerHTML = ""
 
             if (data.length > 0) {
                 data.forEach((customer, index) => {
                     var tattooValues = []
-                    for (tattoo of customer.tattoos) {
+                    for (let tattoo of customer.tattoos) {
                         tattooValues.push(tattoo.price)
                     }
 
@@ -27,20 +29,25 @@ function searchCustomers() {
                         tattooValues.push(0)
                     }
 
-                    var qtdTattoos = customer.tattoos.length
-                    var maxTattooValue = Math.max(...tattooValues)
-                    var totalTattooValue = customer.tattoos.reduce((total, tattoo) => total + tattoo.price, 0)
-                    var meanTattooValue = (totalTattooValue / qtdTattoos).toFixed(0)
+                    const qtdTattoos = customer.tattoos.length
+                    const maxTattooValue = Math.max(...tattooValues)
+                    const totalTattooValue = customer.tattoos.reduce((total, tattoo) => total + tattoo.price, 0)
+                    let meanTattooValue = (totalTattooValue / qtdTattoos).toFixed(0)
                     if (qtdTattoos == 0) meanTattooValue = 0
 
                     resultTableBody.innerHTML += `
                         <tr id="result-table-row" data-index="${index}">
-                            <th scope="row">${index + 1}</th>
-                            <td>${customer.name}</td>
-                            <td>${qtdTattoos}</td>
-                            <td>${maxTattooValue}</td>
-                            <td>${meanTattooValue}</td>
-                            <td>${totalTattooValue}</td>
+                            <td class="search-customer__td-image-name">
+                                <img src="../../static/img/user.jpg" alt="${customer.name}">                                
+                                <div class="search-customer__name-instagram">
+                                    <p>${customer.name}</p>
+                                    <p>${customer.instagram}</p>
+                                </div>
+                            </td>
+                            <td class="text-center">${qtdTattoos}</td>
+                            <td class="text-center">${maxTattooValue}</td>
+                            <td class="text-center">${meanTattooValue}</td>
+                            <td class="text-center">${totalTattooValue}</td>
 
                         </tr>
                     `
@@ -54,25 +61,20 @@ function searchCustomers() {
         .catch(error => console.error("Error:", error))
 }
 
-var selectedCustomer = null
+let selectedCustomer
 function createListenersForTableRowsCustomers() {
-    var resultTableRows = document.querySelectorAll("#result-table-row")
+    const resultTableRows = document.querySelectorAll("#result-table-row")
     resultTableRows.forEach((row) => {
         row.addEventListener("click", () => {
             selectedCustomer = storedSearch[row.dataset.index]
             showCustomerProfile(selectedCustomer) //customer-profile
-            openCustomerProfile()
+            openCustomerProfile() // pagination
 
             // window.location.href = `/customers/${row.dataset.id}`
         })
     })
 }
 
-
-function openCustomerProfile() {
-    containerSearchCustomer.style.display = "none"
-    containerCustomerProfile.style.display = "block"
-}
 
 // detect event
 const searchCustomerInput = document.querySelector("#search-customer-input")
@@ -88,7 +90,7 @@ searchCustomerInput.addEventListener("keyup", searchCustomers)
 // Edit customer modal
 
 
-
+export { selectedCustomer, searchCustomers };
 
 // debug view
 

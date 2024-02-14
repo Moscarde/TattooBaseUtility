@@ -1,3 +1,7 @@
+import { selectedCustomer } from '../search-customers.js';
+import { filePreviews } from './image-upload.js';
+import { showFlashAlert } from '../flash.js';
+
 let addTattooForm = document.querySelector("#add-tattoo__form");
 
 addTattooForm.addEventListener("submit", (event) => {
@@ -57,7 +61,11 @@ function clearForm() {
     document.querySelector("#add-tattoo__time").value = ""
     // document.querySelector("#add-tattoo__radio-comission").checked = true
     // document.querySelector("#add-tattoo__radio-payment").checked = true
-    filePreviews = []
+    filePreviews.length = 0;
+
+    document.querySelectorAll(".picture__img").forEach(element => {
+        element.remove()
+    })
 }
 
 function base64toBlob(base64) {
@@ -78,3 +86,5 @@ function base64toBlob(base64) {
 
     return new Blob(byteArrays, { type: 'image/png' });
 }
+
+export { base64toBlob }

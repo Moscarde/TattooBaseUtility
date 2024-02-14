@@ -1,5 +1,5 @@
 
-btnEditCustomer = document.querySelector("#btn-edit-customer")
+const btnEditCustomer = document.querySelector("#btn-edit-customer")
 
 btnEditCustomer.addEventListener("click", () => {
     document.querySelector("#modal-customer-id").value = selectedCustomer.id
@@ -11,7 +11,7 @@ btnEditCustomer.addEventListener("click", () => {
     document.querySelector("#modal-customer-instagram").value = selectedCustomer.instagram
 })
 
-editCustomerForm = document.querySelector("#edit-customer-form")
+const editCustomerForm = document.querySelector("#edit-customer-form")
 editCustomerForm.addEventListener("submit", (event) => {
     event.preventDefault()
 

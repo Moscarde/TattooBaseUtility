@@ -3,7 +3,7 @@ let filePreviews = [];
 
 function createInputImageFunction(modalId) {
     console.log('createInputImageFunction')
-    modal = document.querySelector(`#${modalId}`);
+    const modal = document.querySelector(`#${modalId}`);
 
     const inputFile = modal.querySelector(".picture__input");
     const tattooImagesContainer = modal.querySelector(".add-tattoo__images-list");
@@ -45,3 +45,5 @@ function createInputImageFunction(modalId) {
     });
 
 }
+
+export { createInputImageFunction, filePreviews }

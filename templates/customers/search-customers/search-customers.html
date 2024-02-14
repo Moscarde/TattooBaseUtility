@@ -1,38 +1,77 @@
-<div class="card mt-5 p-5 w-100 shadow border-0 window" id="search-customer">
-    <i class="bi bi-arrow-left-circle-fill icon-return" id="btn-return"></i>
-    <h2 class="d-flex justify-content-center">Lista de clientes</h2>
-    <div class="row pt-3">
-        <div class="col-md-8 mx-auto">
-            <label for="name" class="form-label">Filtrar por nome</label>
+<div id="search-customer">
+
+    <div class="row mt-5 search-customer__cards">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Total de clientes</p>
+                    <h3 class="card-text">200</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Tattoo mais cara</p>
+                    <h3 class="card-text">Text</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Maior gasto</p>
+                    <h3 class="card-text">Text</h3>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- <i class="bi bi-arrow-left-circle-fill icon-return" id="btn-return"></i> -->
+    <div class="row mt-5 search-customer__filters">
+        <div class="col-md-5 ">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+                <label class="btn btn-outline-primary" for="btncheck1">First One</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+                <label class="btn btn-outline-primary" for="btncheck2">Second One</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
+                <label class="btn btn-outline-primary" for="btncheck3">Third One</label>
+            </div>
+
+        </div>
+        <div class="col-md-7 my-auto">
             <input type="text" class="form-control" id="search-customer-input" name="name"
                 placeholder="Digite o nome..." required>
         </div>
     </div>
 
-    <div class="mt-5 search-result">
-    
-        <table class="table table-hover" id="result-table">
+    <div class="mt-3">
+        <!-- id="result-table" -->
+        <table class="table table-hover search-customer__table" id="search-customer-table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
+                    <th scope="col"><p>Nome</p><p>Instagram</p></th>
                     <th scope="col">Qtd Tattoos</th>
-                    <th scope="col">V Máximo</th>
-                    <th scope="col">V Médio</th>
+                    <th scope="col">$ Max</th>
+                    <th scope="col">V Méd</th>
                     <th scope="col">V Total</th>
                 </tr>
             </thead>
-            <tbody id="result-table-body">
-                    <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+            <!-- <tbody id="result-table-body"> -->
+            <tbody id="search-customer-table-body">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>
-    
+
 </div>

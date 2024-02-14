@@ -1,3 +1,7 @@
+import { createInputImageFunction } from './forms/image-upload.js'
+import { searchCustomers } from './search-customers.js'
+import { selectedCustomer } from './search-customers.js'
+import { showTattooInfos } from './forms/edit-tattoo.js'
 
 function showCustomerProfile(selectedCustomer) {
 
@@ -10,7 +14,7 @@ function showCustomerProfile(selectedCustomer) {
     
     document.querySelector("#add-tattoo__customer-id").value = selectedCustomer.id
 
-    tattooTableBody = document.querySelector("#customer-tattoo-table-body")
+    const tattooTableBody = document.querySelector("#customer-tattoo-table-body")
 
     tattooTableBody.innerHTML = ""
 
@@ -41,7 +45,7 @@ function createListenersForTableRowsTattoos() {
     var resultTableRows = document.querySelectorAll("#customer-tattoo-table-row")
     resultTableRows.forEach((row) => {
         row.addEventListener("click", () => {
-            selectedTattoo = selectedCustomer.tattoos[row.dataset.index]
+            const selectedTattoo = selectedCustomer.tattoos[row.dataset.index]
             document.querySelector("#btn-open-edit-tattoo").click()
             showTattooInfos(selectedTattoo)
             createInputImageFunction("edit-tattoo")
@@ -50,3 +54,5 @@ function createListenersForTableRowsTattoos() {
         })
     })
 }
+
+export { showCustomerProfile }

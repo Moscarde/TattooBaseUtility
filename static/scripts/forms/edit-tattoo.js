@@ -1,6 +1,11 @@
+import { selectedCustomer } from '../search-customers.js';
+import { filePreviews } from './image-upload.js';
+import { showFlashAlert } from '../flash.js';
+import { base64toBlob } from './add-tattoo.js';
+
 function showTattooInfos(tattoo) {
     console.log(tattoo)
-    filePreviews = [];
+    filePreviews.length = 0;
     document.querySelector("#edit-tattoo__id").value = tattoo.tattoo_id
     document.querySelector("#edit-tattoo__name").value = tattoo.tattoo_name
 
@@ -131,3 +136,5 @@ function clearEditTattooForm() {
     })
 }
 // document.querySelector("#edit-tattoo") 
+
+export { showTattooInfos }
