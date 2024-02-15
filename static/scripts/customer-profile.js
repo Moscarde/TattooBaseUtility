@@ -24,11 +24,11 @@ function showCustomerProfile(selectedCustomer) {
 
             tattooTableBody.innerHTML += `
                         <tr id="customer-tattoo-table-row" data-index="${index}">
-                            <th scope="row">${tattoo.date}</th>
+                            <td>${tattoo.date}</td>
                             <td>${tattoo.tattoo_name}</td>
                             <td>${tattoo.description}</td>
-                            <td>${tattoo.price}</td>
-                            <td>${tattoo.payment}</td>
+                            <td class="text-center">${tattoo.price}</td>
+                            <td class="text-center">${tattoo.payment}</td>
                         </tr>
                     `
         })

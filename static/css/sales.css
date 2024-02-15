@@ -58,12 +58,12 @@
 }
 
 /* Customer list - table */
-.search-customer__table {
+.table {
     border-radius: 6px;
     overflow: hidden;
 }
 
-.search-customer__table th {
+.table th {
     background-color: #c6d9ee;
     /* border: 1px solid #000; */
     text-align: center;
@@ -72,23 +72,23 @@
     vertical-align: middle;
 }
 
-.search-customer__td-image-name {
+.table .table__image-name {
     display: flex;
     align-items: center;
 }
 
-.search-customer__td-image-name img {
+.table .table__image-name img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin: 0 1.5rem;
 }
 
-.search-customer__table p {
+.table p {
     margin: 0;
 }
 
-.search-customer__table td {
+.table td {
     cursor: pointer;
     height: 70px;
     vertical-align: middle;
@@ -243,7 +243,7 @@
 
 
 /* table customers */
-#search-customer__table-body tr,
+#table-body tr,
 #customer-tattoo-table-body tr {
     cursor: pointer;
 }

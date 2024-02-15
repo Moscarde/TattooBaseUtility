@@ -37,7 +37,7 @@ function searchCustomers() {
 
                     resultTableBody.innerHTML += `
                         <tr id="result-table-row" data-index="${index}">
-                            <td class="search-customer__td-image-name">
+                            <td class="table__image-name">
                                 <img src="../../static/img/user.jpg" alt="${customer.name}">                                
                                 <div class="search-customer__name-instagram">
                                     <p>${customer.name}</p>
