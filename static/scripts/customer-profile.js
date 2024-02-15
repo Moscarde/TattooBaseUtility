@@ -36,10 +36,21 @@ function showCustomerProfile(selectedCustomer) {
     createListenersForTableRowsTattoos()
 }
 
-document.querySelector("#btn-add-tattoo").addEventListener("click", () => {
-    createInputImageFunction("add-tattoo")
+document.querySelectorAll("#btn-add-tattoo").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        fillCustomerName(selectedCustomer)
+        createInputImageFunction("modal-add-tattoo")
+    })
 })
 
+
+function fillCustomerName(selectedCustomer) {
+    // console.log("fillCustomerName", selectedCustomer.name)
+    if (selectedCustomer) {
+        document.querySelector("#add-tattoo__customer-name").value = selectedCustomer.name
+    }
+    
+}
 
 function createListenersForTableRowsTattoos() {
     var resultTableRows = document.querySelectorAll("#customer-tattoo-table-row")

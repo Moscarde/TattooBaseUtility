@@ -1,0 +1,30 @@
+<div class=" ps-5 pe-5">
+    <!-- customers__menu -->
+    <div class="sales-header d-flex justify-content-between mb-3">
+        <h2 class="fs-2">Vendas</h2>
+        <div>
+            <button type="button" class="btn btn-primary" id="btn-add-customer" data-bs-toggle="modal"
+                data-bs-target="#modal-add-customer">
+                <i class="bi bi-person-add"></i> Adicionar cliente
+            </button>
+            <button type="button" class="btn btn-primary ms-2" id="btn-add-tattoo" data-bs-toggle="modal"
+                data-bs-target="#modal-add-tattoo">
+                <i class="bi bi-vector-pen"></i> Adicionar tattoo
+            </button>
+        </div>
+    </div>
+    <div class="sales-menu">
+        <ul>
+            <li class="active" id="btn-open-customers-list">Lista de clientes</li>
+            <li id="btn-open-tattoos-list">Lista de tattoos</li>
+        </ul>
+        <div class="customers__horizontal-bar"></div>
+    </div>
+
+    {% include 'sales/search-customers/search-customers.html' %}
+
+</div>
+
+{% include 'sales/modal-add-customer.html' %}
+{% include 'sales/customer-profile/customer-profile.html' %}
+{% include 'sales/customer-profile/modal/add-tattoo.html' %}

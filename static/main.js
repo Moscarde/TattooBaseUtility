@@ -2,7 +2,6 @@
 
 
 document.write('<script type="module" src="../static/scripts/flash.js"></script>')
-document.write('<script type="module" src="../static/scripts/scripts.js"></script>')
 document.write('<script type="module" src="../static/scripts/media-query.js"></script>')
 document.write('<script type="module" src="../static/scripts/search-customers.js"></script>')
 document.write('<script type="module" src="../static/scripts/pagination.js"></script>')

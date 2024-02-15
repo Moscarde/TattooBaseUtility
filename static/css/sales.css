@@ -11,17 +11,17 @@
     cursor: pointer
 }
 
-.customers__menu {
+.sales-menu {
     position: relative;
 }
 
-.customers__menu ul {
+.sales-menu ul {
     display: flex;
     justify-content: left;
 
 }
 
-.customers__menu ul li {
+.sales-menu ul li {
     list-style: none;
     cursor: pointer;
     font-size: 1rem;
@@ -35,13 +35,13 @@
     border-bottom: #ECECEE 2px solid;
 }
 
-.customers__menu ul li:hover {
+.sales-menu ul li:hover {
     /* background-color: #252c90; */
     color: #4D4AEA;
     border-bottom: #4D4AEA 2px solid;
 }
 
-.customers__menu ul li.active {
+.sales-menu ul li.active {
     color: #4D4AEA;
     border-bottom: #4D4AEA 2px solid;
 }
@@ -96,12 +96,44 @@
 
 
 /* RESET */
-.customers__menu ul {
+.sales-menu ul {
     padding-left: 0;
 }
 
 
 /* tattoos modal */
+#add-tattoo__customer-name {
+    position: relative;
+    z-index:10;
+}
+
+#add-tattoo__customers-result {
+    position: relative;
+}
+#add-tattoo__customers-result ul {
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    background-color: #f1f1f1;
+    border-top: 5px solid #999;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+#add-tattoo__customers-result ul li {
+    list-style: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: .5rem;
+    border-radius: 5px;
+    ;
+}
+
+#add-tattoo__customers-result ul li:hover {
+    background-color: #252c90;
+    color: #fff;
+}
+
 .picture__input {
     display: none;
     outline: 1px solid #000;

@@ -1,8 +1,8 @@
 <div class="card mt-5 p-5 w-100 shadow border-0 d-none" id="customer-profile" data-anime="up">
-    <i class="bi bi-arrow-left-circle-fill icon-return" id="btn-return-to-search"></i>
+    <i class="bi bi-arrow-left-circle-fill icon-return" id="customer-profile__btn-return"></i>
     <h2 class="d-flex justify-content-center">
         <span id="customer-name">Cliente</span>
-        <i class="bi bi-pencil-square icon-edit" data-bs-toggle="modal" id="btn-edit-customer"
+        <i class="bi bi-pencil-square icon-edit" id="btn-edit-customer" data-bs-toggle="modal" 
             data-bs-target="#staticBackdrop"></i>
     </h2>
 
@@ -27,14 +27,14 @@
         data-bs-target="#staticBackdrop">
         Editar Cliente
     </button> -->
-    {% include 'customers/customer-profile/modal/edit-customer.html' %}
-    {% include 'customers/customer-profile/modal/add-tattoo.html' %}
-    {% include 'customers/customer-profile/modal/edit-tattoo.html' %}
+    {% include 'sales/customer-profile/modal/edit-customer.html' %}
+
+    {% include 'sales/customer-profile/modal/edit-tattoo.html' %}
 
     <div class="customer__actions mt-5 d-flex justify-content-center">
         <ul>
             <li><span class="btn btn-primary" id="btn-add-tattoo" data-bs-toggle="modal"
-                    data-bs-target="#add-tattoo">Adicionar Tatuagem</span></li>
+                    data-bs-target="#modal-add-tattoo">Adicionar Tatuagem</span></li>
         </ul>
     </div>
     <div class="mt-5 search-result">

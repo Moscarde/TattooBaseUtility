@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="add-tattoo" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal-add-tattoo" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -13,6 +13,15 @@
                     enctype="multipart/form-data" class="row g-3">
                     <input type="text" class="form-control d-none" id="add-tattoo__customer-id" name="customer_id"
                         value="">
+
+                    <div class="col-md-12">
+                        <label for="customer-name" class="form-label">Cliente</label>
+                        <input type="text" class="form-control" id="add-tattoo__customer-name" name="customer-name"
+                            placeholder="Insira o nome de um cliente..." required>
+                        <div id="add-tattoo__customers-result"></div>
+                    </div>
+
+
                     <div class="col-md-12">
                         <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="add-tattoo__name" name="name"

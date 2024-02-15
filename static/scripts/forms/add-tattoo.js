@@ -1,4 +1,4 @@
-import { selectedCustomer } from '../search-customers.js';
+import { selectedCustomer, storedSearch } from '../search-customers.js';
 import { filePreviews } from './image-upload.js';
 import { showFlashAlert } from '../flash.js';
 
@@ -14,7 +14,7 @@ addTattooForm.addEventListener("submit", (event) => {
 function addTattoo() {
     var tattooFormData = new FormData();
 
-    tattooFormData.append("customer_id", selectedCustomer["id"])
+    tattooFormData.append("customer_id", document.querySelector("#add-tattoo__customer-id").value)
     tattooFormData.append("name", document.querySelector("#add-tattoo__name").value)
     // var inputImage = document.querySelector("#add-tattoo__input-image");
     // for (var i = 0; i < inputImage.files.length; i++) {
@@ -51,6 +51,76 @@ function addTattoo() {
 
         })
         .catch(error => console.error("Error:", error))
+}
+
+const inputCustomerName = document.querySelector("#add-tattoo__customer-name")
+const customersResultBox = document.querySelector("#add-tattoo__customers-result")
+const hiddenCustomerId = document.querySelector("#add-tattoo__customer-id")
+
+inputCustomerName.addEventListener("keyup", () => {
+    let result = []
+    let input = inputCustomerName.value
+    hiddenCustomerId.value = ""
+
+
+    if (input != "") {
+        result = storedSearch.filter(customer => {
+            return customer.name.toLowerCase().includes(input.toLowerCase())
+        })
+        console.log(result)
+    } else {
+        customersResultBox.innerHTML = ""
+    }
+
+    if (result.length > 0) {
+        customersResultBox.innerHTML = "<ul> </ul>"
+        for (let customer of result) {
+            const customerResultItem = document.createElement("li")
+            customerResultItem.innerHTML = customer.name
+            customerResultItem.setAttribute("data-id", customer.id)
+            customerResultItem.setAttribute("tabindex", 0)
+            customerResultItem.addEventListener("click", () => {
+                selectCustomer(customer)
+            })
+            customerResultItem.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    selectCustomer(customer)
+                }
+            })
+            customersResultBox.querySelector("ul").appendChild(customerResultItem)
+
+            // customersResultBox.querySelector("ul").innerHTML += `
+            //     <li id="customer-result" data-id="${customer.id}">${customer.name}</li>
+            // `
+        }
+        validCustomer(true)
+    } else {
+        validCustomer()
+        customersResultBox.innerHTML = ""
+    }
+})
+
+
+function selectCustomer(customer) {
+    inputCustomerName.value = customer.name
+    customersResultBox.innerHTML = ""
+    hiddenCustomerId.value = customer.id
+    validCustomer(true)
+    console.log(customer)
+    selectedCustomer = customer
+}
+
+function validCustomer(click = false) {
+    if (inputCustomerName.value.length > 0) {
+        console.log("invalid")
+        inputCustomerName.classList.add("is-invalid")
+    } else {
+        console.log("valid")
+        inputCustomerName.classList.remove("is-invalid")
+    }
+    if (click) {
+        inputCustomerName.classList.remove("is-invalid")
+    }
 }
 
 function clearForm() {

@@ -2,7 +2,6 @@
 let filePreviews = [];
 
 function createInputImageFunction(modalId) {
-    console.log('createInputImageFunction')
     const modal = document.querySelector(`#${modalId}`);
 
     const inputFile = modal.querySelector(".picture__input");

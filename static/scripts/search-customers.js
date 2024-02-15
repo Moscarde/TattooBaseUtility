@@ -3,7 +3,7 @@ import { openCustomerProfile } from './pagination.js';
 
 // -- Card Search Customer --
 // var to store search query
-var storedSearch = null
+var storedSearch
 
 // request and render results
 function searchCustomers() {
@@ -90,7 +90,7 @@ searchCustomerInput.addEventListener("keyup", searchCustomers)
 // Edit customer modal
 
 
-export { selectedCustomer, searchCustomers };
+export { selectedCustomer, searchCustomers, storedSearch };
 
 // debug view
 
