@@ -11,6 +11,7 @@ const containerAddCustomer = document.querySelector("#add-customer")
 const containerSearchCustomer = document.querySelector("#search-customer")
 const containerCustomerProfile = document.querySelector("#customer-profile")
 
+
 //Btns
 const btnCustomersList = document.querySelector("#btn-open-customers-list")
 btnCustomersList.addEventListener("click", openCustomersList)
@@ -18,6 +19,8 @@ const btnTattoosList = document.querySelector("#btn-open-tattoos-list")
 // btnTattoosList.addEventListener("click", openCustomerProfile)
 const btnReturnCustomerProfile = document.querySelector("#customer-profile__btn-return")
 btnReturnCustomerProfile.addEventListener("click", openCustomersList)
+const btnCustomerProfile = document.querySelector("#btn-open-customer-profile")
+btnCustomerProfile.addEventListener("click", openCustomerProfile)
 
 // Open Add Customer container
 // const btnOpenAddCustomerMenu = document.querySelector("#customers-menu__btn-add-customer")
@@ -54,5 +57,4 @@ export { openCustomersList, openCustomerProfile }
 // #debug
 setTimeout(() => {
     searchCustomers()
-
 }, 750)

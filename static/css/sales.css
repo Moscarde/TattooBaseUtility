@@ -2,14 +2,22 @@
     background-color: #fafafa;
 }
 
-.icon-return {
-    position: absolute;
-    top: 14px;
-    left: 18px;
-    font-size: 32px;
-    color: #3c3c3c;
-    cursor: pointer
+.btn-return {
+    color: #aaa;
+    /* text-decoration: underline; */
+    cursor: pointer;
 }
+
+.btn-return:hover {
+    color: #888;
+    text-decoration: underline;
+}
+
+/* .icon-return {
+        font-size: 32px;
+        color: #3c3c3c;
+        cursor: pointer;
+    } */
 
 .sales-menu {
     position: relative;
@@ -104,12 +112,13 @@
 /* tattoos modal */
 #add-tattoo__customer-name {
     position: relative;
-    z-index:10;
+    z-index: 10;
 }
 
 #add-tattoo__customers-result {
     position: relative;
 }
+
 #add-tattoo__customers-result ul {
     position: absolute;
     top: -5px;
@@ -215,6 +224,10 @@
     margin: .2rem;
 }
 
+
+#customer-profile h3 {
+    font-weight: 300;
+}
 
 
 

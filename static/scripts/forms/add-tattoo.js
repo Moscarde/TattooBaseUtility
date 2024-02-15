@@ -38,7 +38,7 @@ function addTattoo() {
 
 
     console.log(tattooFormData)
-    var options = {
+    const options = {
         method: "POST",
         body: tattooFormData
     };

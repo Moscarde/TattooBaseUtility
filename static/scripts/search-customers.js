@@ -20,6 +20,7 @@ function searchCustomers() {
 
             if (data.length > 0) {
                 data.forEach((customer, index) => {
+                    console.log(customer)
                     var tattooValues = []
                     for (let tattoo of customer.tattoos) {
                         tattooValues.push(tattoo.price)
@@ -31,7 +32,13 @@ function searchCustomers() {
 
                     const qtdTattoos = customer.tattoos.length
                     const maxTattooValue = Math.max(...tattooValues)
-                    const totalTattooValue = customer.tattoos.reduce((total, tattoo) => total + tattoo.price, 0)
+                    const totalTattooValue = customer.tattoos.reduce((total, tattoo) => {
+                        if (tattoo.price == "") {
+                            return total
+                        } else {
+                            return total + tattoo.price
+                        }
+                    }, 0)
                     let meanTattooValue = (totalTattooValue / qtdTattoos).toFixed(0)
                     if (qtdTattoos == 0) meanTattooValue = 0
 
@@ -54,6 +61,8 @@ function searchCustomers() {
                 })
             }
             createListenersForTableRowsCustomers()
+
+
         })
 
 

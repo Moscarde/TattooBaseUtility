@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal-edit-customer" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -11,40 +11,48 @@
             <div class="modal-body">
                 <form id="edit-customer-form" class="row g-3">
 
-                    <input type="text" class="form-control" id="modal-customer-id" name="id" hidden value="#">
-                    <div class="col-md-6">
+                    <input type="text" class="form-control" id="edit-customer__id" name="id" hidden value="#">
+                    <div class="col-md-12">
                         <label for="name" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="modal-customer-name" name="name"
+                        <input type="text" class="form-control" id="edit-customer__name" name="name"
                             placeholder="Digite o nome..." required>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="phone" class="form-label">Telefone</label>
-                        <input type="text" class="form-control" id="modal-customer-phone" name="phone"
+                        <input type="text" class="form-control" id="edit-customer__phone" name="phone"
                             placeholder="Digite o telefone...">
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="phone" class="form-label">@ instagram</label>
-                        <input type="text" class="form-control" id="modal-customer-instagram" name="instagram"
+                        <input type="text" class="form-control" id="edit-customer__instagram" name="instagram"
                             placeholder="Digite o @ do instagram...">
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label for="birth" class="form-label">Nascimento</label>
+                        <input type="date" class="form-control" id="edit-customer__birth" name="birth">
+                    </div>
+
+
+                    <div class="col-md-12">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="modal-customer-email" name="email"
+                        <input type="email" class="form-control" id="edit-customer__email" name="email"
                             placeholder="Digite o email...">
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="birth" class="form-label">Nascimento</label>
-                        <input type="date" class="form-control" id="modal-customer-birth" name="birth">
+
+                    <div class="col-md-12">
+                        <label for="address" class="form-label">Endereço</label>
+                        <input type="text" class="form-control" id="edit-customer__address" name="address">
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="address" class="form-label">Endereço</label>
-                        <input type="text" class="form-control" id="modal-customer-address" name="address">
+                    <div class="col-md-12">
+                        <label for="edit-customer__observations" class="form-label">Observações</label>
+                        <input type="text" class="form-control" id="edit-customer__observations" name="observation">
                     </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

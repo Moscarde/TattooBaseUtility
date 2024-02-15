@@ -1,4 +1,4 @@
-<div class=" ps-5 pe-5">
+<div class=" p-5">
     <!-- customers__menu -->
     <div class="sales-header d-flex justify-content-between mb-3">
         <h2 class="fs-2">Vendas</h2>
@@ -17,14 +17,15 @@
         <ul>
             <li class="active" id="btn-open-customers-list">Lista de clientes</li>
             <li id="btn-open-tattoos-list">Lista de tattoos</li>
+            <li id="btn-open-customer-profile">Perfil do cliente</li>
         </ul>
         <div class="customers__horizontal-bar"></div>
     </div>
 
     {% include 'sales/search-customers/search-customers.html' %}
+    {% include 'sales/customer-profile/customer-profile.html' %}
 
 </div>
 
 {% include 'sales/modal-add-customer.html' %}
-{% include 'sales/customer-profile/customer-profile.html' %}
 {% include 'sales/customer-profile/modal/add-tattoo.html' %}

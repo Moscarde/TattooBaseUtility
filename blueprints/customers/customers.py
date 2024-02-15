@@ -65,26 +65,23 @@ def delete_customer():
 
 @customers_bp.route("/customers/update_customer", methods=["POST"])
 def update_customer():
+    # try:
+        if request.method == "POST":
+            customer = {
+                "id": request.form["id"],
+                "name": request.form["name"],
+                "phone": request.form["phone"],
+                "birth": request.form["birth"],
+                "email": request.form["email"],
+                "address": request.form["address"],
+                "instagram": request.form["instagram"],
+                "observations": request.form["observations"] or "",
+            }
 
-    if request.method == "POST":
-        data = request.get_json()
-        customer = {
-            "id": data["id"],
-            "name": data["name"],
-            "phone": data["phone"],
-            "birth": data["birth"],
-            "email": data["email"],
-            "address": data["address"],
-            "instagram": data["instagram"],
-            "observations": data["observations"],
-        }
+        db_update_customer(customer)
+        return jsonify({"type": "success", "message": f'Cliente "{request.form["name"]}" atualizado com sucesso!'})
 
-        if db_update_customer(customer):
-            flash(f'Cliente "{data["name"]}" atualizado com sucesso!', "success")
-            return jsonify({"status": "success", "message": f'Cliente "{data["name"]}" atualizado com sucesso!'})
-        else:
-            flash("Erro na edição", "danger")
-            return jsonify({"status": "error", "message": "Erro na edição"})
+    # except Exception as e:
+    #     return jsonify({"type": "error", "message": f"Erro na edição, {str(e)}"})
         
-        return redirect("/")
         
