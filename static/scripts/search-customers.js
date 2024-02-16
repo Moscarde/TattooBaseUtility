@@ -14,8 +14,8 @@ function searchCustomers() {
         .then(data => {
 
             storedSearch = data
+            document.querySelector("#search-customer__result-count").innerHTML = `Exibindo ${data.length > itensPerPage ? itensPerPage : data.length} de ${data.length} resultados encontrados`;
             const resultTableBody = document.querySelector("#search-customer-table-body")
-
             resultTableBody.innerHTML = ""
 
             if (data.length > 0) {
@@ -39,11 +39,13 @@ function searchCustomers() {
                             return total + tattoo.price
                         }
                     }, 0)
+
                     let meanTattooValue = (totalTattooValue / qtdTattoos).toFixed(0)
+
                     if (qtdTattoos == 0) meanTattooValue = 0
 
                     resultTableBody.innerHTML += `
-                        <tr id="result-table-row" data-index="${index}">
+                        <tr id="result-table-row" data-index="${index}" class="d-none">
                             <td class="table__image-name">
                                 <img src="../../static/img/user.jpg" alt="${customer.name}">                                
                                 <div class="search-customer__name-instagram">
@@ -60,17 +62,85 @@ function searchCustomers() {
                     `
                 })
             }
+            resultPage = 1
+            pagination()
             createListenersForTableRowsCustomers()
 
 
         })
 
-
-
         .catch(error => console.error("Error:", error))
 }
 
 let selectedCustomer
+
+let resultPage = 1
+const itensPerPage = 4
+function pagination() {
+    const resultTableRows = document.querySelectorAll("#result-table-row")
+    
+    const firstItem = (resultPage * itensPerPage) - itensPerPage
+    const lastItem = resultPage * itensPerPage
+    resultTableRows.forEach((row, index) => {
+        if (index >= firstItem && index < lastItem) {
+            row.classList.remove("d-none")
+        } else {
+            row.classList.add("d-none")
+        }
+    })
+
+    if (resultTableRows.length > itensPerPage) {
+        nextPage.classList.remove("cursor-na")
+        nextPage.classList.add("cursor-a")
+    } else {
+        nextPage.classList.add("cursor-na")
+        nextPage.classList.remove("cursor-a")
+    }
+    //                   3                    3
+
+    let lastPage = Math.ceil(resultTableRows.length / itensPerPage)
+
+    if (resultPage == lastPage) {
+        console.log("ultima")
+        nextPage.classList.add("cursor-na")
+        nextPage.classList.remove("cursor-a")
+
+    }
+
+    
+}
+
+const nextPage = document.querySelector("#pagination-next")
+const previousPage = document.querySelector("#pagination-previous")
+
+nextPage.addEventListener("click", () => {
+    if (nextPage.classList.contains("cursor-na")) {
+        return
+    }
+
+    if (resultPage < Math.ceil(storedSearch.length / itensPerPage)) {
+        resultPage++
+        pagination()
+        previousPage.classList.remove("cursor-na")
+        previousPage.classList.add("cursor-a")
+    }
+})
+
+previousPage.addEventListener("click", () => {
+    if (previousPage.classList.contains("cursor-na")) {
+        return
+    }
+
+    if (resultPage > 1) {
+        resultPage--
+        pagination()
+    }
+    if (resultPage == 1) {
+        previousPage.classList.remove("cursor-a")
+        previousPage.classList.add("cursor-na")
+    }
+})
+
 function createListenersForTableRowsCustomers() {
     const resultTableRows = document.querySelectorAll("#result-table-row")
     resultTableRows.forEach((row) => {

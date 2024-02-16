@@ -45,7 +45,6 @@ def start_database():
     )
     conn.commit()
 
-
     conn.close()
 
 
@@ -83,8 +82,9 @@ def populate_database(table, data):
 
 
 if __name__ == "__main__":
-    #remove db if exists
+    # remove db if exists
     import os
+
     if os.path.exists(db_path):
         os.remove(db_path)
     start_database()
@@ -135,6 +135,96 @@ if __name__ == "__main__":
             "address": "Rua E, 654",
             "instagram": "@anasouza",
             "observations": "obs",
+        },
+        {
+            "name": "Lucas Ferreira",
+            "phone": 123456789,
+            "birth": "1985-09-20",
+            "email": "lucas@example.com",
+            "address": "Rua F, 321",
+            "instagram": "@lucasf",
+            "observations": "obs",
+        },
+        {
+            "name": "Pedro Almeida",
+            "phone": 123456789,
+            "birth": "1985-09-20",
+            "email": "pedro@example.com",
+            "address": "Rua G, 987",
+            "instagram": "@pedroalmeida",
+            "observations": "obs",
+        },
+        {
+            "name": "Luciana Rodrigues",
+            "phone": 123456789,
+            "birth": "1985-09-20",
+            "email": "luciana@example.com",
+            "address": "Rua H, 654",
+            "instagram": "@lucianar",
+            "observations": "obs",
+        },
+        {
+            "name": "Gustavo Pereira",
+            "phone": 888888888,
+            "birth": "1992-08-22",
+            "email": "gustavo@example.com",
+            "address": "Alameda Q, 567",
+            "instagram": "@gustavopereira",
+            "observations": "Observações finais.",
+        },
+        {
+            "name": "Patricia Santos",
+            "phone": 222222222,
+            "birth": "1984-01-12",
+            "email": "patricia@example.com",
+            "address": "Praça R, 789",
+            "instagram": "@patriciasantos",
+            "observations": "Outras notas.",
+        },
+        {
+            "name": "Fernando Oliveira",
+            "phone": 666666666,
+            "birth": "1987-09-28",
+            "email": "fernando@example.com",
+            "address": "Travessa S, 456",
+            "instagram": "@fernandooliveira",
+            "observations": "Informações adicionais.",
+        },
+        {
+            "name": "Rafaela Lima",
+            "phone": 444444444,
+            "birth": "1980-03-05",
+            "email": "rafaela@example.com",
+            "address": "Avenida T, 123",
+            "instagram": "@rafaelalima",
+            "observations": "Observações diversas.",
+        },
+        {
+            "name": "Mariana Costa",
+            "phone": 777777777,
+            "birth": "1989-06-18",
+            "email": "mariana@example.com",
+            "address": "Rua U, 890",
+            "instagram": "@marianacosta",
+            "observations": "Notas importantes.",
+        },
+        {
+            "name": "Pedro Santos",
+            "phone": 333333333,
+            "birth": "1995-11-30",
+            "email": "pedro@example.com",
+            "address": "Alameda V, 567",
+            "instagram": "@pedrosantos",
+            "observations": "Mais algumas observações.",
+        },
+        {
+            "name": "Carlos Pereira",
+            "phone": 111111111,
+            "birth": "1975-07-25",
+            "email": "carlos@example.com",
+            "address": "Travessa Z, 456",
+            "instagram": "@carlospereira",
+            "observations": "Outras observações.",
         },
     ]
 
@@ -200,7 +290,6 @@ if __name__ == "__main__":
             "images": "tattoo1.jpg;tattoo2.jpg;tattoo3.jpg",
         },
     ]
-
 
     for customer in data_customers:
         populate_database("customers", customer)

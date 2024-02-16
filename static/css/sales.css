@@ -102,6 +102,32 @@
     vertical-align: middle;
 }
 
+.search-customer__pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.search-customer__pagination ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+.search-customer__pagination ul li {
+    margin: 0 0.5rem;
+}
+
+.search-customer__pagination ul li:hover {
+    text-decoration: underline;
+}
+
+.cursor-na:hover {
+    cursor: no-drop;
+}
+.cursor-a:hover {
+    cursor: pointer;
+}
 
 /* RESET */
 .sales-menu ul {
