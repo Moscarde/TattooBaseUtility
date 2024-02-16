@@ -1,16 +1,29 @@
 import { filePreviews } from './image-upload.js';
 import { showFlashAlert } from '../flash.js';
-import { base64toBlob } from './add-tattoo.js';
+import { appendFormImages, clearForm, updateCustomerTattoos } from '../utils.js';
 
-function showTattooInfos(tattoo) {
-    console.log(tattoo)
+const inputEditTattooId = document.querySelector("#edit-tattoo__id");
+const inputEditTattooName = document.querySelector("#edit-tattoo__name");
+const inputEditTattooDescription = document.querySelector("#edit-tattoo__description");
+const inputEditTattooPrice = document.querySelector("#edit-tattoo__price");
+const inputEditTattooDate = document.querySelector("#edit-tattoo__date");
+const inputEditTattooTime = document.querySelector("#edit-tattoo__time");
+
+const radioEditComission = document.querySelectorAll('input[name="edit-tattoo__radio-comission"]');
+const radioEditPayment = document.querySelectorAll('input[name="edit-tattoo__radio-payment"]');
+const radioEditStatus = document.querySelectorAll('input[name="edit-tattoo__radio-status"]');
+
+const editTattooInputList = [inputEditTattooName, inputEditTattooDescription, inputEditTattooPrice, inputEditTattooDate, inputEditTattooTime];
+const editTattoosRadiosList = [radioEditComission, radioEditPayment, radioEditStatus];
+
+const tattooImagesContainer = document.querySelector("#edit-tattoo__images");
+
+function fillTattooInfos(tattoo) {
     filePreviews.length = 0;
-    document.querySelector("#edit-tattoo__id").value = tattoo.tattoo_id
-    document.querySelector("#edit-tattoo__name").value = tattoo.tattoo_name
+    inputEditTattooId.value = tattoo.tattoo_id
+    inputEditTattooName.value = tattoo.tattoo_name
 
-    const tattooImagesContainer = document.querySelector("#edit-tattoo__images");
     for (let i = 0; i < tattoo.images.length; i++) {
-
         const img = document.createElement("img");
         img.src = '../../../static/img/tattoos/' + tattoo.images[i];
         img.classList.add("picture__img");
@@ -30,78 +43,73 @@ function showTattooInfos(tattoo) {
 
     }
 
-    document.querySelector("#edit-tattoo__description").value = tattoo.description
-    document.querySelector("#edit-tattoo__price").value = tattoo.price
-    document.querySelector("#edit-tattoo__date").value = tattoo.date
-    document.querySelector("#edit-tattoo__time").value = tattoo.time
+    inputEditTattooDescription.value = tattoo.description
+    inputEditTattooPrice.value = tattoo.price
+    inputEditTattooDate.value = tattoo.date
+    inputEditTattooTime.value = tattoo.time
 
-
-    let radiosComission = document.querySelectorAll('input[name="edit-tattoo__radio-comission"]')
-    for (let i = 0; i < radiosComission.length; i++) {
-        if (radiosComission[i].value == tattoo.comission) {
-            radiosComission[i].checked = true
+    for (let i = 0; i < radioEditComission.length; i++) {
+        if (radioEditComission[i].value == tattoo.comission) {
+            radioEditComission[i].checked = true
             break
         }
     }
 
-
-    let radiosPayment = document.querySelectorAll('input[name="edit-tattoo__radio-payment"]')
-    for (let i = 0; i < radiosPayment.length; i++) {
-        if (radiosPayment[i].value == tattoo.payment) {
-            radiosPayment[i].checked = true
+    for (let i = 0; i < radioEditPayment.length; i++) {
+        if (radioEditPayment[i].value == tattoo.payment) {
+            radioEditPayment[i].checked = true
             break
         }
     }
 
-    let radiosStatus = document.querySelectorAll('input[name="edit-tattoo__radio-status"]')
-    for (let i = 0; i < radiosStatus.length; i++) {
-        if (radiosStatus[i].value == tattoo.status) {
-            radiosStatus[i].checked = true
+    let radioEditStatus = document.querySelectorAll('input[name="edit-tattoo__radio-status"]')
+    for (let i = 0; i < radioEditStatus.length; i++) {
+        if (radioEditStatus[i].value == tattoo.status) {
+            radioEditStatus[i].checked = true
             break
         }
     }
 
 }
 
-let editTattooForm = document.querySelector("#edit-tattoo__form");
+const editTattooForm = document.querySelector("#edit-tattoo__form");
 
 editTattooForm.addEventListener("submit", (event) => {
     event.preventDefault()
     editTattoo()
-    clearEditTattooForm()
     editTattooForm.querySelector('button[data-bs-dismiss="modal"]').click()
+    clearForm(editTattooInputList, editTattoosRadiosList)
+    updateCustomerTattoos()
 })
 
 function editTattoo() {
-    var tattooFormData = new FormData();
+    let tattooFormData = new FormData();
 
-    tattooFormData.append("tattoo_id", document.querySelector("#edit-tattoo__id").value)
-    tattooFormData.append("name", document.querySelector("#edit-tattoo__name").value)
+    tattooFormData.append("tattoo_id", inputEditTattooId.value)
+    tattooFormData.append("name", inputEditTattooName.value)
+    tattooFormData.append("description", inputEditTattooDescription.value)
+    tattooFormData.append("price", inputEditTattooPrice.value)
+    tattooFormData.append("date", inputEditTattooDate.value);
+    tattooFormData.append("time", inputEditTattooTime.value);
 
-    // var inputImage = document.querySelector("#edit-tattoo__input-image");
-    // for (var i = 0; i < inputImage.files.length; i++) {
-    //     tattooFormData.append("image", inputImage.files[i]);
-    // }
-    tattooFormData.append("description", document.querySelector("#edit-tattoo__description").value)
-    tattooFormData.append("price", document.querySelector("#edit-tattoo__price").value)
-    tattooFormData.append("comission", document.querySelector('input[name="edit-tattoo__radio-comission"]:checked').value);
-    tattooFormData.append("payment", document.querySelector('input[name="edit-tattoo__radio-payment"]:checked').value);
-    tattooFormData.append("status", document.querySelector('input[name="edit-tattoo__radio-status"]:checked').value)
-    tattooFormData.append("date", document.querySelector("#edit-tattoo__date").value);
-    tattooFormData.append("time", document.querySelector("#edit-tattoo__time").value);
-
-    for (let i = 0; i < filePreviews.length; i++) {
-        if (filePreviews[i].length > 1000) {
-            const base64 = filePreviews[i].split(',')[1];
-            const blob = base64toBlob(base64);
-            tattooFormData.append("image", blob, `tattoo_image_${i}.png`);
+    radioEditComission.forEach((radio) => {
+        if (radio.checked) {
+            tattooFormData.append("comission", radio.value)
         }
-        else {
-            tattooFormData.append("old_image", filePreviews[i]);
+    })
+    radioEditPayment.forEach((radio) => {
+        if (radio.checked) {
+            tattooFormData.append("payment", radio.value)
         }
-    }
+    })
+    radioEditStatus.forEach((radio) => {
+        if (radio.checked) {
+            tattooFormData.append("status", radio.value)
+        }
+    })
 
-    console.log(tattooFormData)
+    tattooFormData = appendFormImages(tattooFormData, filePreviews)
+
 
     var options = {
         method: "POST",
@@ -121,19 +129,6 @@ function editTattoo() {
 
 }
 
-function clearEditTattooForm() {
-
-    document.querySelector("#edit-tattoo__id").value = ""
-    document.querySelector("#edit-tattoo__name").value = ""
-    document.querySelector("#edit-tattoo__description").value = ""
-    document.querySelector("#edit-tattoo__price").value = ""
-    document.querySelector("#edit-tattoo__date").value = ""
-    document.querySelector("#edit-tattoo__time").value = ""
-
-    document.querySelectorAll(".picture__img").forEach(element => {
-        element.remove()
-    })
-}
 // document.querySelector("#edit-tattoo") 
 
-export { showTattooInfos }
+export { fillTattooInfos }

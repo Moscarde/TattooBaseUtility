@@ -53,12 +53,11 @@ def db_get_all_customers():
 
 def db_get_customer_by(column, term):
     conn, c = connect_database()
-
     c.execute(
         f"""SELECT *
         FROM customers 
         LEFT JOIN tattoos ON customers.id = tattoos.customer_id
-        WHERE {column} LIKE ?""",
+        WHERE customers.{column} LIKE ?""",
         ("%" + term + "%",),
     )
     result = c.fetchall()
@@ -109,8 +108,8 @@ def db_get_customer_by(column, term):
     return search_results
 
 
-def db_get_customer_by_id(id_):
-    customer = db_get_customer_by("id", id_)[0]
+def db_get_customer_by_id(customer_id):
+    customer = db_get_customer_by("id", customer_id)[0]
     return customer
 
 

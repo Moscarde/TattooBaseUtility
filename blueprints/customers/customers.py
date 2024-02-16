@@ -53,7 +53,9 @@ def get_customer_by_name():
 @customers_bp.route("/customers/get_customer_by_id", methods=["GET"])
 def get_customer_by_id():
     if request.method == "GET":
-        return db_get_customer_by_id(request.form["id"])
+        customer_id = request.args.get("id")
+        return jsonify(db_get_customer_by_id(customer_id))
+
 
 
 @customers_bp.route("/customers/delete_customer", methods=["POST"])

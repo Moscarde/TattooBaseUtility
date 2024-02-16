@@ -1,9 +1,10 @@
 import { createInputImageFunction } from './forms/image-upload.js'
 import { currentCustomer, searchCustomers } from './search-customers.js'
-import { showTattooInfos } from './forms/edit-tattoo.js'
+import { fillTattooInfos } from './forms/edit-tattoo.js'
+import { updateCustomerTattoos } from './utils.js'
 
 function showCustomerProfile(selectedCustomer) {
-
+    console.log('showCustomerProfile')
     document.querySelector("#customer-name").innerHTML = selectedCustomer.name
     document.querySelector("#customer-phone").innerHTML = selectedCustomer.phone
     document.querySelector("#customer-email").innerHTML = selectedCustomer.email
@@ -59,7 +60,7 @@ function createListenersForTableRowsTattoos() {
         row.addEventListener("click", () => {
             const selectedTattoo = currentCustomer.tattoos[row.dataset.index]
             document.querySelector("#btn-open-edit-tattoo").click()
-            showTattooInfos(selectedTattoo)
+            fillTattooInfos(selectedTattoo)
             createInputImageFunction("edit-tattoo")
 
             // window.location.href = `/customers/${row.dataset.id}`
