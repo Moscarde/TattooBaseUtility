@@ -1,4 +1,4 @@
-import { selectedCustomer, storedSearch } from '../search-customers.js';
+import { currentCustomer, storedSearch } from '../search-customers.js';
 import { filePreviews } from './image-upload.js';
 import { showFlashAlert } from '../flash.js';
 
@@ -16,10 +16,6 @@ function addTattoo() {
 
     tattooFormData.append("customer_id", document.querySelector("#add-tattoo__customer-id").value)
     tattooFormData.append("name", document.querySelector("#add-tattoo__name").value)
-    // var inputImage = document.querySelector("#add-tattoo__input-image");
-    // for (var i = 0; i < inputImage.files.length; i++) {
-    //     tattooFormData.append("image", inputImage.files[i]);
-    // }
     tattooFormData.append("description", document.querySelector("#add-tattoo__description").value)
     tattooFormData.append("price", document.querySelector("#add-tattoo__price").value)
     tattooFormData.append("comission", document.querySelector('input[name="add-tattoo__radio-comission"]:checked').value);
@@ -27,8 +23,7 @@ function addTattoo() {
     tattooFormData.append("date", document.querySelector("#add-tattoo__date").value);
     tattooFormData.append("time", document.querySelector("#add-tattoo__time").value);
 
-    // Adiciona as imagens do filePreviews ao FormData
-    // for (const imageSrc of filePreviews) {
+
     for (let i = 0; i < filePreviews.length; i++) {
         const base64 = filePreviews[i].split(',')[1];
         const blob = base64toBlob(base64);
@@ -107,7 +102,7 @@ function selectCustomer(customer) {
     hiddenCustomerId.value = customer.id
     validCustomer(true)
     console.log(customer)
-    selectedCustomer = customer
+    currentCustomer = customer
 }
 
 function validCustomer(click = false) {

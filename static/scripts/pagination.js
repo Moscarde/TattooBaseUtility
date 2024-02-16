@@ -1,4 +1,4 @@
-import { selectedCustomer, searchCustomers } from './search-customers.js';
+import { currentCustomer, searchCustomers } from './search-customers.js';
 import { showFlashAlert } from './flash.js';
 
 
@@ -39,12 +39,13 @@ btnCustomerProfile.addEventListener("click", openCustomerProfile)
 function openCustomersList() {
     containerCustomerProfile.classList.add("d-none")
     containerSearchCustomer.classList.remove("d-none")
+    searchCustomers()
     // btnCustomerProfile.classList.remove("active")
     // btnOverview.classList.add("active")
 }
 
 function openCustomerProfile() {
-    if (selectedCustomer == null) {
+    if (currentCustomer == null) {
         showFlashAlert("Nenhum cliente selecionado!", "warning")
         return
     }

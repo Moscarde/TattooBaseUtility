@@ -71,7 +71,7 @@ function searchCustomers() {
         .catch(error => console.error("Error:", error))
 }
 
-let selectedCustomer
+let currentCustomer
 
 let resultPage = 1
 const itensPerPage = 4
@@ -144,8 +144,8 @@ function createListenersForTableRowsCustomers() {
     const resultTableRows = document.querySelectorAll("#result-table-row")
     resultTableRows.forEach((row) => {
         row.addEventListener("click", () => {
-            selectedCustomer = storedSearch[row.dataset.index]
-            showCustomerProfile(selectedCustomer) //customer-profile
+            currentCustomer = storedSearch[row.dataset.index]
+            showCustomerProfile(currentCustomer) //customer-profile
             openCustomerProfile() // pagination
 
             // window.location.href = `/customers/${row.dataset.id}`
@@ -168,7 +168,7 @@ searchCustomerInput.addEventListener("keyup", searchCustomers)
 // Edit customer modal
 
 
-export { selectedCustomer, searchCustomers, storedSearch };
+export { currentCustomer, searchCustomers, storedSearch };
 
 // debug view
 
@@ -182,7 +182,7 @@ function debugCustomer() {
     setInterval(() => {
 
         showCustomerProfile(storedSearch[0])
-        selectedCustomer = storedSearch[0]
+        currentCustomer = storedSearch[0]
     }, 1500)
     console.log("debug Customer")
 }

@@ -1,4 +1,3 @@
-import { selectedCustomer } from '../search-customers.js';
 import { filePreviews } from './image-upload.js';
 import { showFlashAlert } from '../flash.js';
 import { base64toBlob } from './add-tattoo.js';

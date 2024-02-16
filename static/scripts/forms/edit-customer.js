@@ -1,4 +1,4 @@
-import { selectedCustomer } from '../search-customers.js';
+import { currentCustomer } from '../search-customers.js';
 import { showFlashAlert } from '../flash.js';
 import { showCustomerProfile } from '../customer-profile.js';
 import { clearForm } from '../utils.js';
@@ -16,14 +16,14 @@ const inputCustomerObservations = document.querySelector("#edit-customer__observ
 const editCustomerInputList = [inputCustomerName, inputCustomerPhone, inputCustomerEmail, inputCustomerBirth, inputCustomerAddress, inputCustomerInstagram, inputCustomerObservations]
 
 btnEditCustomer.addEventListener("click", () => {
-    inputCustomerId.value = selectedCustomer.id
-    inputCustomerName.value = selectedCustomer.name
-    inputCustomerPhone.value = selectedCustomer.phone
-    inputCustomerEmail.value = selectedCustomer.email
-    inputCustomerBirth.value = selectedCustomer.birth
-    inputCustomerAddress.value = selectedCustomer.address
-    inputCustomerInstagram.value = selectedCustomer.instagram
-    inputCustomerObservations.value = selectedCustomer.observations
+    inputCustomerId.value = currentCustomer.id
+    inputCustomerName.value = currentCustomer.name
+    inputCustomerPhone.value = currentCustomer.phone
+    inputCustomerEmail.value = currentCustomer.email
+    inputCustomerBirth.value = currentCustomer.birth
+    inputCustomerAddress.value = currentCustomer.address
+    inputCustomerInstagram.value = currentCustomer.instagram
+    inputCustomerObservations.value = currentCustomer.observations
 })
 
 const editCustomerForm = document.querySelector("#edit-customer-form")
@@ -60,8 +60,8 @@ function editCustomer() {
 
 
     customerFormData.forEach((value, key) => {
-        selectedCustomer[key] = value
+        currentCustomer[key] = value
     })
-    showCustomerProfile(selectedCustomer)
+    showCustomerProfile(currentCustomer)
 
 }

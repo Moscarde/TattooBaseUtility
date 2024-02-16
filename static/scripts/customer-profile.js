@@ -1,6 +1,5 @@
 import { createInputImageFunction } from './forms/image-upload.js'
-import { searchCustomers } from './search-customers.js'
-import { selectedCustomer } from './search-customers.js'
+import { currentCustomer, searchCustomers } from './search-customers.js'
 import { showTattooInfos } from './forms/edit-tattoo.js'
 
 function showCustomerProfile(selectedCustomer) {
@@ -40,7 +39,7 @@ function showCustomerProfile(selectedCustomer) {
 
 document.querySelectorAll("#btn-add-tattoo").forEach((btn) => {
     btn.addEventListener("click", () => {
-        fillCustomerName(selectedCustomer)
+        fillCustomerName(currentCustomer)
         createInputImageFunction("modal-add-tattoo")
     })
 })
@@ -58,7 +57,7 @@ function createListenersForTableRowsTattoos() {
     var resultTableRows = document.querySelectorAll("#customer-tattoo-table-row")
     resultTableRows.forEach((row) => {
         row.addEventListener("click", () => {
-            const selectedTattoo = selectedCustomer.tattoos[row.dataset.index]
+            const selectedTattoo = currentCustomer.tattoos[row.dataset.index]
             document.querySelector("#btn-open-edit-tattoo").click()
             showTattooInfos(selectedTattoo)
             createInputImageFunction("edit-tattoo")
