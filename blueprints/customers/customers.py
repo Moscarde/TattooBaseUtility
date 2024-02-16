@@ -10,6 +10,7 @@ from db.sql_customers import (
 
 customers_bp = Blueprint("customers_bp", __name__)
 
+
 @customers_bp.route("/customers/test", methods=["GET"])
 def customers():
     return "Pong"
@@ -18,24 +19,24 @@ def customers():
 @customers_bp.route("/customers/add_customer", methods=["POST"])
 def add_customer():
     if request.method == "POST":
-        customer = {
-            "name": request.form["name"],
-            "phone": request.form["phone"],
-            "birth": request.form["birth"],
-            "email": request.form["email"],
-            "address": request.form["address"],
-            "instagram": request.form["instagram"],
-            "observations": request.form["observations"],
-        }
-
-        if db_add_customer(customer):
-            flash(f'Cliente "{request.form["name"]}" criado com sucesso!', "success")
-        else:
-            flash("Erro no cadastro. Certifique os dados inseridos.", "danger")
-
-        
-
-    return "Erro no cadastro. Todos os campos são obrigatórios."
+        try:
+            db_add_customer(
+                name=request.form["name"],
+                phone=request.form["phone"],
+                birth=request.form["birth"],
+                email=request.form["email"],
+                address=request.form["address"],
+                instagram=request.form["instagram"],
+                observations=request.form["observations"],
+            )
+            return jsonify(
+                {
+                    "type": "success",
+                    "message": f'Cliente "{request.form["name"]}" criado com sucesso!',
+                }
+            )
+        except Exception as e:
+            return jsonify({"type": "error", "message": f"Erro na adição, {str(e)}"})
 
 
 @customers_bp.route("/customers/get_all_customers", methods=["GET"])
@@ -65,7 +66,8 @@ def delete_customer():
 
 @customers_bp.route("/customers/update_customer", methods=["POST"])
 def update_customer():
-    # try:
+    try:
+
         if request.method == "POST":
             customer = {
                 "id": request.form["id"],
@@ -79,9 +81,12 @@ def update_customer():
             }
 
         db_update_customer(customer)
-        return jsonify({"type": "success", "message": f'Cliente "{request.form["name"]}" atualizado com sucesso!'})
+        return jsonify(
+            {
+                "type": "success",
+                "message": f'Cliente "{request.form["name"]}" atualizado com sucesso!',
+            }
+        )
 
-    # except Exception as e:
-    #     return jsonify({"type": "error", "message": f"Erro na edição, {str(e)}"})
-        
-        
+    except Exception as e:
+        return jsonify({"type": "error", "message": f"Erro na edição, {str(e)}"})

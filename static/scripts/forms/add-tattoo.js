@@ -2,7 +2,7 @@ import { selectedCustomer, storedSearch } from '../search-customers.js';
 import { filePreviews } from './image-upload.js';
 import { showFlashAlert } from '../flash.js';
 
-let addTattooForm = document.querySelector("#add-tattoo__form");
+const addTattooForm = document.querySelector("#add-tattoo__form");
 
 addTattooForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -12,7 +12,7 @@ addTattooForm.addEventListener("submit", (event) => {
 })
 
 function addTattoo() {
-    var tattooFormData = new FormData();
+    const tattooFormData = new FormData();
 
     tattooFormData.append("customer_id", document.querySelector("#add-tattoo__customer-id").value)
     tattooFormData.append("name", document.querySelector("#add-tattoo__name").value)

@@ -1,19 +1,29 @@
 import { selectedCustomer } from '../search-customers.js';
 import { showFlashAlert } from '../flash.js';
 import { showCustomerProfile } from '../customer-profile.js';
+import { clearForm } from '../utils.js';
 
 const btnEditCustomer = document.querySelector("#btn-edit-customer")
 
+const inputCustomerId = document.querySelector("#edit-customer__id")
+const inputCustomerName = document.querySelector("#edit-customer__name")
+const inputCustomerPhone = document.querySelector("#edit-customer__phone")
+const inputCustomerEmail = document.querySelector("#edit-customer__email")
+const inputCustomerBirth = document.querySelector("#edit-customer__birth")
+const inputCustomerAddress = document.querySelector("#edit-customer__address")
+const inputCustomerInstagram = document.querySelector("#edit-customer__instagram")
+const inputCustomerObservations = document.querySelector("#edit-customer__observations")
+const editCustomerInputList = [inputCustomerName, inputCustomerPhone, inputCustomerEmail, inputCustomerBirth, inputCustomerAddress, inputCustomerInstagram, inputCustomerObservations]
+
 btnEditCustomer.addEventListener("click", () => {
-    document.querySelector("#edit-customer__id").value = selectedCustomer.id
-    document.querySelector("#edit-customer__name").value = selectedCustomer.name
-    document.querySelector("#edit-customer__phone").value = selectedCustomer.phone
-    document.querySelector("#edit-customer__email").value = selectedCustomer.email
-    document.querySelector("#edit-customer__birth").value = selectedCustomer.birth
-    document.querySelector("#edit-customer__address").value = selectedCustomer.address
-    document.querySelector("#edit-customer__instagram").value = selectedCustomer.instagram
-    document.querySelector("#edit-customer__observations").value = selectedCustomer.observations
-    console.log(selectedCustomer)
+    inputCustomerId.value = selectedCustomer.id
+    inputCustomerName.value = selectedCustomer.name
+    inputCustomerPhone.value = selectedCustomer.phone
+    inputCustomerEmail.value = selectedCustomer.email
+    inputCustomerBirth.value = selectedCustomer.birth
+    inputCustomerAddress.value = selectedCustomer.address
+    inputCustomerInstagram.value = selectedCustomer.instagram
+    inputCustomerObservations.value = selectedCustomer.observations
 })
 
 const editCustomerForm = document.querySelector("#edit-customer-form")
@@ -27,27 +37,24 @@ editCustomerForm.addEventListener("submit", (event) => {
 function editCustomer() {
     var customerFormData = new FormData();
 
-    customerFormData.append("id", document.querySelector("#edit-customer__id").value)
-    customerFormData.append("name", document.querySelector("#edit-customer__name").value)
-    customerFormData.append("phone", document.querySelector("#edit-customer__phone").value)
-    customerFormData.append("email", document.querySelector("#edit-customer__email").value)
-    customerFormData.append("birth", document.querySelector("#edit-customer__birth").value)
-    customerFormData.append("address", document.querySelector("#edit-customer__address").value)
-    customerFormData.append("instagram", document.querySelector("#edit-customer__instagram").value)
-    customerFormData.append("observations", document.querySelector("#edit-customer__observations").value)
-
+    customerFormData.append("id", inputCustomerId.value)
+    customerFormData.append("name", inputCustomerName.value)
+    customerFormData.append("phone", inputCustomerPhone.value)
+    customerFormData.append("email", inputCustomerEmail.value)
+    customerFormData.append("birth", inputCustomerBirth.value)
+    customerFormData.append("address", inputCustomerAddress.value)
+    customerFormData.append("instagram", inputCustomerInstagram.value)
+    customerFormData.append("observations", inputCustomerObservations.value)
+    
     const options = {
         method: "POST",
         body: customerFormData
     };
 
-
-
     fetch("/customers/update_customer", options)
         .then(response => response.json())
         .then(data => {
             showFlashAlert(data.message, data.type)
-
         })
         .catch(error => console.error("Error:", error))
 
@@ -56,11 +63,5 @@ function editCustomer() {
         selectedCustomer[key] = value
     })
     showCustomerProfile(selectedCustomer)
-
-}
-
-
-function updateCustomer(customer) {
-
 
 }

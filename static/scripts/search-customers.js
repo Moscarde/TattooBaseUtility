@@ -20,7 +20,6 @@ function searchCustomers() {
 
             if (data.length > 0) {
                 data.forEach((customer, index) => {
-                    console.log(customer)
                     var tattooValues = []
                     for (let tattoo of customer.tattoos) {
                         tattooValues.push(tattoo.price)

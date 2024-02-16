@@ -4,26 +4,18 @@ from flask import jsonify, render_template
 from datetime import datetime
 
 
-def db_add_customer(customer):
+def db_add_customer(name, phone, birth, email, address, instagram, observations):
     conn, c = connect_database()
-
-    name = customer["name"]
-    phone = customer["phone"]
-    birth = datetime.now().strftime("%H:%M:%S")
-    email = customer["email"]
-    address = customer["address"]
-    instagram = customer["instagram"]
-    observations = customer["observations"]
 
     c.execute(
         "INSERT INTO customers (name, phone, birth, email, address, instagram, observations) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [name, phone, birth, email, address, instagram, observations],
     )
-    conn.commit()
 
+    conn.commit()
+    
     conn.close()
 
-    return True
 
 
 def db_update_customer(customer):
