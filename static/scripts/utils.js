@@ -17,9 +17,6 @@ function clearForm(listInputs, radios = null) {
     document.querySelectorAll(".picture__img").forEach(element => {
         element.remove()
     })
-
-
-
 }
 
 function appendFormImages(formData, filePreviews) {
@@ -61,6 +58,21 @@ function updateCustomerTattoos() {
 
 }
 
+function sortAscending(list, term) {
+    if (term === "name") {
+        return list.sort((a, b) => a[term].localeCompare(b[term]));
+    } else {
+        return list.sort((a, b) => a[term] - b[term]);
+    }
+}
+
+function sortDescending(list, term) {
+    if (term === "name") {
+        return list.sort((a, b) => b[term].localeCompare(a[term]));
+    } else {
+        return list.sort((a, b) => b[term] - a[term]);
+    }
+}
 
 
-export { clearForm, appendFormImages, updateCustomerTattoos }
+export { clearForm, appendFormImages, updateCustomerTattoos, sortAscending, sortDescending }

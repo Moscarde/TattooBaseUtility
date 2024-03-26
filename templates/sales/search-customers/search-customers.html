@@ -55,25 +55,56 @@
             encontrados</p>
         <table class="table table-hover" id="search-customer-table">
             <thead>
-                <tr>
-                    <th scope="col">
-                        <p>Nome</p>
-                        <p>Instagram</p>
+                <tr id="filter-table">
+                    <th scope="col" data-filter="name" data-orientation="asc" class="th-light" style="width: 40%">
+                        <div class="table__header-content">
+                            <div class="table__header-icon"></div>
+                            <p>Nome</p>
+                            <p>Instagram</p>
+                        </div>
                     </th>
-                    <th scope="col">Qtd Tattoos</th>
-                    <th scope="col">$ Max</th>
-                    <th scope="col">V Méd</th>
-                    <th scope="col">V Total</th>
+                    <th scope="col" data-filter="qtdTattoos" class="th-light" style="width: 10%">
+                        <div class="table__header-content">
+                            <div class="table__header-icon"></div>
+                            <p>Qtd Tattoos</p>
+                        </div>
+                    </th>
+                    <th scope="col" data-filter="maxTattooValue" class="th-light" style="width: 10%">
+                        <div class="table__header-content">
+                            <div class="table__header-icon"></div>
+                            <p>$ Max</p>
+                        </div>
+                    </th>
+                    <th scope="col" data-filter="meanTattooValue" class="th-light" style="width: 10%">
+                        <div class="table__header-content">
+                            <div class="table__header-icon"></div>
+                            <p>V Méd</p>
+                        </div>
+                    </th>
+                    <th scope="col" data-filter="totalTattooValue" class="th-light" style="width: 10%">
+                        <div class="table__header-content">
+                            <div class="table__header-icon"></div>
+                            <p>V Total</p>
+                        </div>
+                    </th>
                 </tr>
             </thead>
             <!-- <tbody id="result-table-body"> -->
             <tbody id="search-customer-table-body">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr id="result-table-row" data-index="customer.index" class="d-none" data-id="customer.id">
+                    <td class="table__image-name"></td>
+                    <td>
+                        <div class="table__row-content"></div>
+                    </td>
+                    <td>
+                        <div class="table__row-content"></div>
+                    </td>
+                    <td>
+                        <div class="table__row-content"></div>
+                    </td>
+                    <td>
+                        <div class="table__row-content"></div>
+                    </td>
                 </tr>
             </tbody>
         </table>

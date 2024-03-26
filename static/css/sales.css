@@ -75,21 +75,29 @@
     background-color: #c6d9ee;
     /* border: 1px solid #000; */
     text-align: center;
-    font-weight: 400;
     height: 70px;
     vertical-align: middle;
+    cursor: pointer;
 }
 
-.table .table__image-name {
+.table th:hover {
+    background-color: #b9c8e0;
+    transition: 0.2s ease-in-out;
+}
+
+.table .table__header-content {
+    position: relative;
+}
+
+/* .table .table__image-name {
     display: flex;
     align-items: center;
-}
-
-.table .table__image-name img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0 1.5rem;
+} */
+.table__header-icon {
+    position: absolute;
+    right: 10%;
+    /* 35px é metade da largura do ícone (70px) */
+    top: calc(50% - 12px);
 }
 
 .table p {
@@ -102,6 +110,36 @@
     vertical-align: middle;
 }
 
+.table td .table__row-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table td:first-child .table__row-content {
+    justify-content: flex-start;
+    /* Estilos personalizados para o primeiro .table__row-content em cada célula td */
+}
+
+.table td .table__row-content img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 1.5rem;
+}
+
+
+.th-light {
+    font-weight: 400;
+}
+
+.th-bold {
+    font-weight: 700;
+}
+
+
+
+/* Table pagination */
 .search-customer__pagination {
     display: flex;
     justify-content: center;
@@ -125,6 +163,7 @@
 .cursor-na:hover {
     cursor: no-drop;
 }
+
 .cursor-a:hover {
     cursor: pointer;
 }
